@@ -387,781 +387,884 @@
     <footer>
         <p>© 2025 SKIN CASE. Todos los derechos reservados. Medellin, Colombia.</p>
     </footer>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script>
-        // === TODOS LOS MODELOS (450+ CON CÁMARAS EXACTAS) ===
-        const phoneData = {
-            "Apple": [
-                { name: "iPhone 15 Pro Max", cameraType: "triple-large", module: "oval", size: "50x30", flash: "below" },
-                { name: "iPhone 15 Pro", cameraType: "triple", module: "oval", size: "45x25", flash: "below" },
-                { name: "iPhone 15", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "iPhone 14 Pro Max", cameraType: "triple-large", module: "oval", size: "50x30", flash: "below" },
-                { name: "iPhone 14 Pro", cameraType: "triple", module: "oval", size: "45x25", flash: "below" },
-                { name: "iPhone 14", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "iPhone 13 Pro Max", cameraType: "triple-large", module: "pill", size: "45x25", flash: "diagonal" },
-                { name: "iPhone 13 Pro", cameraType: "triple", module: "pill", size: "40x25", flash: "diagonal" },
-                { name: "iPhone 13", cameraType: "dual-diagonal", module: "pill", size: "40x25", flash: "diagonal" },
-                { name: "iPhone 12 Pro Max", cameraType: "triple", module: "square", size: "40x40", flash: "below" },
-                { name: "iPhone 12 Pro", cameraType: "triple", module: "square", size: "35x35", flash: "below" },
-                { name: "iPhone 12", cameraType: "dual", module: "square", size: "35x35", flash: "below" },
-                { name: "iPhone 11 Pro Max", cameraType: "triple", module: "square", size: "40x40", flash: "below" },
-                { name: "iPhone 11 Pro", cameraType: "triple", module: "square", size: "35x35", flash: "below" },
-                { name: "iPhone 11", cameraType: "dual", module: "square", size: "35x35", flash: "below" },
-                { name: "iPhone XR", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
-                { name: "iPhone XS Max", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "iPhone XS", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
-                { name: "iPhone X", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
-                { name: "iPhone 8 Plus", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
-                { name: "iPhone 8", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
-                { name: "iPhone 7 Plus", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
-                { name: "iPhone 7", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
-                { name: "iPhone 6S Plus", cameraType: "single", module: "circle", size: "25x25", flash: "side" },
-                { name: "iPhone 6S", cameraType: "single", module: "circle", size: "25x25", flash: "side" },
-                { name: "iPhone 6 Plus", cameraType: "single", module: "circle", size: "25x25", flash: "side" },
-                { name: "iPhone 6", cameraType: "single", module: "circle", size: "25x25", flash: "side" },
-                { name: "iPhone 5S", cameraType: "single", module: "circle", size: "20x20", flash: "side" },
-                { name: "iPhone 16 Pro Max", cameraType: "quad", module: "oval", size: "55x35", flash: "below" },
-                { name: "iPhone 16 Pro", cameraType: "triple-large", module: "oval", size: "50x30", flash: "below" },
-                { name: "iPhone 16", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "iPhone SE 2022", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
-                { name: "iPhone SE 2020", cameraType: "single", module: "circle", size: "30x30", flash: "side" }
-            ],
-            "Samsung": [
-                { name: "Galaxy S24 Ultra", cameraType: "penta-samsung", module: "rect", size: "60x40", flash: "top" },
-                { name: "Galaxy S24+", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
-                { name: "Galaxy S24", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
-                { name: "Galaxy S23 Ultra", cameraType: "penta-samsung", module: "rect", size: "60x40", flash: "top" },
-                { name: "Galaxy S23+", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
-                { name: "Galaxy S23", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
-                { name: "Galaxy S22 Ultra", cameraType: "penta-samsung", module: "rect", size: "55x35", flash: "top" },
-                { name: "Galaxy S22+", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
-                { name: "Galaxy S22", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
-                { name: "Galaxy Z Fold5", cameraType: "triple-samsung", module: "rect", size: "45x25", flash: "side" },
-                { name: "Galaxy Z Flip5", cameraType: "dual-samsung", module: "pill", size: "40x20", flash: "side" },
-                { name: "Galaxy A54", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "integrated" },
-                { name: "Galaxy A34", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "integrated" },
-                { name: "Galaxy A73", cameraType: "quad-samsung", module: "rect", size: "50x30", flash: "integrated" },
-                { name: "Galaxy A53", cameraType: "quad-samsung", module: "rect", size: "50x30", flash: "integrated" },
-                { name: "Galaxy S21 Ultra", cameraType: "quad-samsung", module: "rect", size: "55x35", flash: "top" },
-                { name: "Galaxy S20 Ultra", cameraType: "penta-samsung", module: "rect", size: "60x40", flash: "top" },
-                { name: "Galaxy S10+", cameraType: "triple-samsung", module: "rect", size: "45x25", flash: "top" },
-                { name: "Galaxy S9+", cameraType: "dual-horizontal", module: "pill", size: "40x20", flash: "side" },
-                { name: "Galaxy S8", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
-                { name: "Galaxy S25 Ultra", cameraType: "penta-samsung", module: "rect", size: "65x45", flash: "top" },
-                { name: "Galaxy Z Fold6", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "side" },
-                { name: "Galaxy A56", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "integrated" },
-                { name: "Galaxy A35", cameraType: "triple-samsung", module: "rect", size: "45x25", flash: "integrated" },
-                { name: "Galaxy M54", cameraType: "quad-samsung", module: "rect", size: "50x30", flash: "integrated" },
-                { name: "Galaxy Note 20 Ultra", cameraType: "triple-large", module: "rect", size: "55x35", flash: "top" },
-                { name: "Galaxy S20 FE", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" }
-            ],
-            "Xiaomi": [
-                { name: "Xiaomi 14 Ultra", cameraType: "quad-large", module: "rect", size: "60x40", flash: "below" },
-                { name: "Xiaomi 14 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
-                { name: "Xiaomi 14", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Redmi Note 13 Pro+", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
-                { name: "Poco X6 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Xiaomi 13 Ultra", cameraType: "quad-large", module: "rect", size: "60x40", flash: "below" },
-                { name: "Redmi Note 12 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Poco F5", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Mi 11 Ultra", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
-                { name: "Mi 10 Ultra", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
-                { name: "Redmi Note 11 Pro", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
-                { name: "Mi 9T Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Mi 8 Pro", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Mi 6X", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Mi 5X", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
-                { name: "Mi 4", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
-                { name: "Redmi K70 Ultra", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
-                { name: "Redmi Note 14 Pro", cameraType: "triple-large", module: "rect", size: "45x25", flash: "below" },
-                { name: "Poco F7 Ultra", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
-                { name: "Mi 15", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" }
-            ],
-            "Huawei": [
-                { name: "Pura 70 Ultra", cameraType: "quad", module: "circle", size: "55x35", flash: "side" },
-                { name: "Mate 60 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
-                { name: "P60 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
-                { name: "P50 Pro", cameraType: "dual-plus", module: "rect", size: "50x30", flash: "below" },
-                { name: "Mate 50 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
-                { name: "P40 Pro", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
-                { name: "Mate 40 Pro", cameraType: "triple-circle", module: "circle", size: "45x45", flash: "side" },
-                { name: "Nova 11", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Nova 10", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Nova 9", cameraType: "quad", module: "rect", size: "45x25", flash: "below" },
-                { name: "P30 Pro", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
-                { name: "Mate 30 Pro", cameraType: "quad-circle", module: "circle", size: "50x50", flash: "side" },
-                { name: "P20 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Mate 20 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "P20", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Mate 10 Pro", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "P10 Plus", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Mate 9", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "P9 Plus", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Mate 8", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
-                { name: "P8", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
-                { name: "Mate S", cameraType: "single", module: "circle", size: "30x30", flash: "side" }
-            ],
-            "Honor": [
-                { name: "Magic6 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
-                { name: "Magic5 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
-                { name: "90", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "70", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "50", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "X9b", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "X8", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Magic V2", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Magic4 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Magic3 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" }
-            ],
-            "Motorola": [
-                { name: "Edge 50 Ultra", cameraType: "triple-large", module: "rect", size: "50x30", flash: "side" },
-                { name: "Edge 40 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "side" },
-                { name: "Edge 40", cameraType: "dual-large", module: "rect", size: "45x25", flash: "side" },
-                { name: "Moto G84", cameraType: "dual", module: "rect", size: "40x20", flash: "side" },
-                { name: "Moto G73", cameraType: "dual", module: "rect", size: "40x20", flash: "side" },
-                { name: "Moto G54", cameraType: "dual", module: "rect", size: "40x20", flash: "side" },
-                { name: "Razr 40 Ultra", cameraType: "dual", module: "pill", size: "40x20", flash: "side" },
-                { name: "Edge 30 Ultra", cameraType: "triple-large", module: "rect", size: "50x30", flash: "side" },
-                { name: "Edge 30", cameraType: "triple", module: "rect", size: "45x25", flash: "side" },
-                { name: "Moto G Stylus", cameraType: "triple", module: "rect", size: "45x25", flash: "side" }
-            ],
-            "Oppo": [
-                { name: "Find X7 Ultra", cameraType: "quad-large", module: "rect", size: "60x40", flash: "side" },
-                { name: "Find X6 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "side" },
-                { name: "Reno11 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Reno10 Pro+", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
-                { name: "Reno8 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Find N3 Flip", cameraType: "dual", module: "pill", size: "40x20", flash: "side" },
-                { name: "A98", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Find X5 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "side" },
-                { name: "Reno10 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Reno10", cameraType: "dual", module: "pill", size: "40x20", flash: "below" }
-            ],
-            "Realme": [
-                { name: "GT 6", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "12 Pro+", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "11 Pro+", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "GT Neo3", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "C65", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "Narzo 70 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "GT 5", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "GT 3", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "GT 2 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "11 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" }
-            ],
-            "Tecno": [
-                { name: "Camon 40 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
-                { name: "Spark 40 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Pova 6 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Phantom V Flip 2", cameraType: "dual", module: "pill", size: "40x20", flash: "side" },
-                { name: "Camon 30 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Spark 30 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Pova 5 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Phantom V Fold 2", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Camon 20 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "Spark 20 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" }
-            ],
-            "Vivo": [
-                { name: "X100 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
-                { name: "X90 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
-                { name: "V30 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "V29", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "iQOO 12", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Y100", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
-                { name: "X80 Pro", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
-                { name: "V27 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "V25 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
-                { name: "V23 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" }
-            ],
-            "Infinix": [
-                { name: "Note 40 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Hot 40 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Zero 30", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "GT 20 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Note 30", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Hot 30 Play", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Note 30 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Zero 30 5G", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "GT 10 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
-                { name: "Note 30 VIP", cameraType: "triple", module: "rect", size: "50x30", flash: "below" }
-            ]
-        };
-        // === DOM ===
-        const welcomeScreen = document.getElementById('welcomeScreen');
-        const selectionScreen = document.getElementById('selectionScreen');
-        const customizationScreen = document.getElementById('customizationScreen');
-        const continueBtn = document.getElementById('continueBtn');
-        const backToSelectionBtn = document.getElementById('backToSelectionBtn');
-        const backToModelsBtn = document.getElementById('backToModelsBtn');
-        const brandsContainer = document.getElementById('brandsContainer');
-        const modelsContainer = document.getElementById('modelsContainer');
-        const customTitle = document.getElementById('customTitle');
-        const imageUpload = document.getElementById('imageUpload');
-        const imageContainer = document.getElementById('imageContainer');
-        const phoneOverlay = document.getElementById('phoneOverlay');
-        const cartOverlay = document.getElementById('cartOverlay');
-        const cartItems = document.getElementById('cartItems');
-        const cartTotal = document.getElementById('cartTotal');
-        const buyAllBtn = document.getElementById('buyAllBtn');
-        const continueShoppingBtn = document.getElementById('continueShoppingBtn');
-        const toggleCamerasBtn = document.getElementById('toggleCamerasBtn');
-        const exportDesignBtn = document.getElementById('exportDesignBtn');
-        let currentBrand = '', currentModel = '', selectedElement = null;
-        let scale = 1, rotation = 0, isFlipped = false;
-        let cart = JSON.parse(localStorage.getItem('skinCart') || '[]');
-        // === INICIO ===
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            loadBrands();
-            loadEmojis();
-            updateCartUI();
-            continueBtn.addEventListener('click', () => { welcomeScreen.style.display = 'none'; selectionScreen.style.display = 'block'; });
-            backToSelectionBtn.addEventListener('click', showSelectionScreenFromCustomization);
-            backToModelsBtn.addEventListener('click', showBrandsFromModels);
-            imageUpload.addEventListener('change', handleImageUpload);
-            document.getElementById('addTextBtn').addEventListener('click', () => document.getElementById('textModal').style.display = 'flex');
-            document.getElementById('addEmojiBtn').addEventListener('click', () => document.getElementById('emojiModal').style.display = 'flex');
-            document.getElementById('cancelTextBtn').addEventListener('click', () => document.getElementById('textModal').style.display = 'none');
-            document.getElementById('cancelEmojiBtn').addEventListener('click', () => document.getElementById('emojiModal').style.display = 'none');
-            document.getElementById('addTextModalBtn').addEventListener('click', addTextToDesign);
-            document.getElementById('clearBtn').addEventListener('click', clearDesign);
-            document.getElementById('addToCartBtn').addEventListener('click', addToCart);
-            document.getElementById('addAnotherBtn').addEventListener('click', showSelectionScreenFromCustomization);
-            buyAllBtn.addEventListener('click', buyAllViaWhatsApp);
-            toggleCamerasBtn.addEventListener('click', toggleCameraVisibility);
-            continueShoppingBtn.addEventListener('click', () => cartOverlay.style.display = 'none');
-            exportDesignBtn.addEventListener('click', exportDesign);
-            // TRANSFORM
-            document.getElementById('zoomInBtn').addEventListener('click', () => { if (selectedElement) { scale += 0.1; updateTransform(); } });
-            document.getElementById('zoomOutBtn').addEventListener('click', () => { if (selectedElement && scale > 0.3) { scale -= 0.1; updateTransform(); } });
-            document.getElementById('rotateLeftBtn').addEventListener('click', () => { if (selectedElement) { rotation -= 15; updateTransform(); } });
-            document.getElementById('rotateRightBtn').addEventListener('click', () => { if (selectedElement) { rotation += 15; updateTransform(); } });
-            document.getElementById('flipHorizontalBtn').addEventListener('click', () => { if (selectedElement) { isFlipped = !isFlipped; updateTransform(); } });
-            // Botón flotante carrito
-            const cartBtn = document.createElement('button');
-            cartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i>';
-            cartBtn.className = 'btn';
-            cartBtn.style.position = 'fixed'; cartBtn.style.bottom = '20px'; cartBtn.style.right = '20px'; cartBtn.style.zIndex = '1000';
-            cartBtn.onclick = () => cartOverlay.style.display = 'flex';
-            document.body.appendChild(cartBtn);
-            // Modo oscuro
-            document.getElementById('darkModeToggle').addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                const icon = document.querySelector('#darkModeToggle i');
-                icon.classList.toggle('fa-moon');
-                icon.classList.toggle('fa-sun');
-            });
+   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+    // === TODOS LOS MODELOS (450+ CON CÁMARAS EXACTAS) ===
+    const phoneData = {
+        "Apple": [
+            { name: "iPhone 15 Pro Max", cameraType: "triple-large", module: "oval", size: "50x30", flash: "below" },
+            { name: "iPhone 15 Pro", cameraType: "triple", module: "oval", size: "45x25", flash: "below" },
+            { name: "iPhone 15", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "iPhone 14 Pro Max", cameraType: "triple-large", module: "oval", size: "50x30", flash: "below" },
+            { name: "iPhone 14 Pro", cameraType: "triple", module: "oval", size: "45x25", flash: "below" },
+            { name: "iPhone 14", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "iPhone 13 Pro Max", cameraType: "triple-large", module: "pill", size: "45x25", flash: "diagonal" },
+            { name: "iPhone 13 Pro", cameraType: "triple", module: "pill", size: "40x25", flash: "diagonal" },
+            { name: "iPhone 13", cameraType: "dual-diagonal", module: "pill", size: "40x25", flash: "diagonal" },
+            { name: "iPhone 12 Pro Max", cameraType: "triple", module: "square", size: "40x40", flash: "below" },
+            { name: "iPhone 12 Pro", cameraType: "triple", module: "square", size: "35x35", flash: "below" },
+            { name: "iPhone 12", cameraType: "dual", module: "square", size: "35x35", flash: "below" },
+            { name: "iPhone 11 Pro Max", cameraType: "triple", module: "square", size: "40x40", flash: "below" },
+            { name: "iPhone 11 Pro", cameraType: "triple", module: "square", size: "35x35", flash: "below" },
+            { name: "iPhone 11", cameraType: "dual", module: "square", size: "35x35", flash: "below" },
+            { name: "iPhone XR", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
+            { name: "iPhone XS Max", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "iPhone XS", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
+            { name: "iPhone X", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
+            { name: "iPhone 8 Plus", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
+            { name: "iPhone 8", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
+            { name: "iPhone 7 Plus", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
+            { name: "iPhone 7", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
+            { name: "iPhone 6S Plus", cameraType: "single", module: "circle", size: "25x25", flash: "side" },
+            { name: "iPhone 6S", cameraType: "single", module: "circle", size: "25x25", flash: "side" },
+            { name: "iPhone 6 Plus", cameraType: "single", module: "circle", size: "25x25", flash: "side" },
+            { name: "iPhone 6", cameraType: "single", module: "circle", size: "25x25", flash: "side" },
+            { name: "iPhone 5S", cameraType: "single", module: "circle", size: "20x20", flash: "side" },
+            { name: "iPhone 16 Pro Max", cameraType: "quad", module: "oval", size: "55x35", flash: "below" },
+            { name: "iPhone 16 Pro", cameraType: "triple-large", module: "oval", size: "50x30", flash: "below" },
+            { name: "iPhone 16", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "iPhone SE 2022", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
+            { name: "iPhone SE 2020", cameraType: "single", module: "circle", size: "30x30", flash: "side" }
+        ],
+        "Samsung": [
+            { name: "Galaxy S24 Ultra", cameraType: "penta-samsung", module: "rect", size: "60x40", flash: "top" },
+            { name: "Galaxy S24+", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
+            { name: "Galaxy S24", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
+            { name: "Galaxy S23 Ultra", cameraType: "penta-samsung", module: "rect", size: "60x40", flash: "top" },
+            { name: "Galaxy S23+", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
+            { name: "Galaxy S23", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
+            { name: "Galaxy S22 Ultra", cameraType: "penta-samsung", module: "rect", size: "55x35", flash: "top" },
+            { name: "Galaxy S22+", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
+            { name: "Galaxy S22", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" },
+            { name: "Galaxy Z Fold5", cameraType: "triple-samsung", module: "rect", size: "45x25", flash: "side" },
+            { name: "Galaxy Z Flip5", cameraType: "dual-samsung", module: "pill", size: "40x20", flash: "side" },
+            { name: "Galaxy A54", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "integrated" },
+            { name: "Galaxy A34", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "integrated" },
+            { name: "Galaxy A73", cameraType: "quad-samsung", module: "rect", size: "50x30", flash: "integrated" },
+            { name: "Galaxy A53", cameraType: "quad-samsung", module: "rect", size: "50x30", flash: "integrated" },
+            { name: "Galaxy S21 Ultra", cameraType: "quad-samsung", module: "rect", size: "55x35", flash: "top" },
+            { name: "Galaxy S20 Ultra", cameraType: "penta-samsung", module: "rect", size: "60x40", flash: "top" },
+            { name: "Galaxy S10+", cameraType: "triple-samsung", module: "rect", size: "45x25", flash: "top" },
+            { name: "Galaxy S9+", cameraType: "dual-horizontal", module: "pill", size: "40x20", flash: "side" },
+            { name: "Galaxy S8", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
+            { name: "Galaxy S25 Ultra", cameraType: "penta-samsung", module: "rect", size: "65x45", flash: "top" },
+            { name: "Galaxy Z Fold6", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "side" },
+            { name: "Galaxy A56", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "integrated" },
+            { name: "Galaxy A35", cameraType: "triple-samsung", module: "rect", size: "45x25", flash: "integrated" },
+            { name: "Galaxy M54", cameraType: "quad-samsung", module: "rect", size: "50x30", flash: "integrated" },
+            { name: "Galaxy Note 20 Ultra", cameraType: "triple-large", module: "rect", size: "55x35", flash: "top" },
+            { name: "Galaxy S20 FE", cameraType: "triple-samsung", module: "rect", size: "50x30", flash: "top" }
+        ],
+        "Xiaomi": [
+            { name: "Xiaomi 14 Ultra", cameraType: "quad-large", module: "rect", size: "60x40", flash: "below" },
+            { name: "Xiaomi 14 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
+            { name: "Xiaomi 14", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Redmi Note 13 Pro+", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
+            { name: "Poco X6 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Xiaomi 13 Ultra", cameraType: "quad-large", module: "rect", size: "60x40", flash: "below" },
+            { name: "Redmi Note 12 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Poco F5", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Mi 11 Ultra", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
+            { name: "Mi 10 Ultra", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
+            { name: "Redmi Note 11 Pro", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
+            { name: "Mi 9T Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Mi 8 Pro", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Mi 6X", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Mi 5X", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
+            { name: "Mi 4", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
+            { name: "Redmi K70 Ultra", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
+            { name: "Redmi Note 14 Pro", cameraType: "triple-large", module: "rect", size: "45x25", flash: "below" },
+            { name: "Poco F7 Ultra", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
+            { name: "Mi 15", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" }
+        ],
+        "Huawei": [
+            { name: "Pura 70 Ultra", cameraType: "quad", module: "circle", size: "55x35", flash: "side" },
+            { name: "Mate 60 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
+            { name: "P60 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
+            { name: "P50 Pro", cameraType: "dual-plus", module: "rect", size: "50x30", flash: "below" },
+            { name: "Mate 50 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
+            { name: "P40 Pro", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
+            { name: "Mate 40 Pro", cameraType: "triple-circle", module: "circle", size: "45x45", flash: "side" },
+            { name: "Nova 11", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Nova 10", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Nova 9", cameraType: "quad", module: "rect", size: "45x25", flash: "below" },
+            { name: "P30 Pro", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
+            { name: "Mate 30 Pro", cameraType: "quad-circle", module: "circle", size: "50x50", flash: "side" },
+            { name: "P20 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Mate 20 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "P20", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Mate 10 Pro", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "P10 Plus", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Mate 9", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "P9 Plus", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Mate 8", cameraType: "dual", module: "pill", size: "35x20", flash: "below" },
+            { name: "P8", cameraType: "single", module: "circle", size: "30x30", flash: "side" },
+            { name: "Mate S", cameraType: "single", module: "circle", size: "30x30", flash: "side" }
+        ],
+        "Honor": [
+            { name: "Magic6 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
+            { name: "Magic5 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
+            { name: "90", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "70", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "50", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "X9b", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "X8", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Magic V2", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Magic4 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Magic3 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" }
+        ],
+        "Motorola": [
+            { name: "Edge 50 Ultra", cameraType: "triple-large", module: "rect", size: "50x30", flash: "side" },
+            { name: "Edge 40 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "side" },
+            { name: "Edge 40", cameraType: "dual-large", module: "rect", size: "45x25", flash: "side" },
+            { name: "Moto G84", cameraType: "dual", module: "rect", size: "40x20", flash: "side" },
+            { name: "Moto G73", cameraType: "dual", module: "rect", size: "40x20", flash: "side" },
+            { name: "Moto G54", cameraType: "dual", module: "rect", size: "40x20", flash: "side" },
+            { name: "Razr 40 Ultra", cameraType: "dual", module: "pill", size: "40x20", flash: "side" },
+            { name: "Edge 30 Ultra", cameraType: "triple-large", module: "rect", size: "50x30", flash: "side" },
+            { name: "Edge 30", cameraType: "triple", module: "rect", size: "45x25", flash: "side" },
+            { name: "Moto G Stylus", cameraType: "triple", module: "rect", size: "45x25", flash: "side" }
+        ],
+        "Oppo": [
+            { name: "Find X7 Ultra", cameraType: "quad-large", module: "rect", size: "60x40", flash: "side" },
+            { name: "Find X6 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "side" },
+            { name: "Reno11 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Reno10 Pro+", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
+            { name: "Reno8 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Find N3 Flip", cameraType: "dual", module: "pill", size: "40x20", flash: "side" },
+            { name: "A98", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Find X5 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "side" },
+            { name: "Reno10 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Reno10", cameraType: "dual", module: "pill", size: "40x20", flash: "below" }
+        ],
+        "Realme": [
+            { name: "GT 6", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "12 Pro+", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "11 Pro+", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "GT Neo3", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "C65", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "Narzo 70 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "GT 5", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "GT 3", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "GT 2 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "11 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" }
+        ],
+        "Tecno": [
+            { name: "Camon 40 Pro", cameraType: "triple-large", module: "rect", size: "50x30", flash: "below" },
+            { name: "Spark 40 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Pova 6 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Phantom V Flip 2", cameraType: "dual", module: "pill", size: "40x20", flash: "side" },
+            { name: "Camon 30 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Spark 30 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Pova 5 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Phantom V Fold 2", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Camon 20 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "Spark 20 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" }
+        ],
+        "Vivo": [
+            { name: "X100 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
+            { name: "X90 Pro", cameraType: "triple-large", module: "rect", size: "55x35", flash: "below" },
+            { name: "V30 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "V29", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "iQOO 12", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Y100", cameraType: "dual", module: "pill", size: "40x20", flash: "below" },
+            { name: "X80 Pro", cameraType: "quad", module: "rect", size: "50x30", flash: "below" },
+            { name: "V27 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "V25 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" },
+            { name: "V23 Pro", cameraType: "triple", module: "rect", size: "45x25", flash: "below" }
+        ],
+        "Infinix": [
+            { name: "Note 40 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Hot 40 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Zero 30", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "GT 20 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Note 30", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Hot 30 Play", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Note 30 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Zero 30 5G", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "GT 10 Pro", cameraType: "triple", module: "rect", size: "50x30", flash: "below" },
+            { name: "Note 30 VIP", cameraType: "triple", module: "rect", size: "50x30", flash: "below" }
+        ]
+    };
+    // === DOM ===
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const selectionScreen = document.getElementById('selectionScreen');
+    const customizationScreen = document.getElementById('customizationScreen');
+    const continueBtn = document.getElementById('continueBtn');
+    const backToSelectionBtn = document.getElementById('backToSelectionBtn');
+    const backToModelsBtn = document.getElementById('backToModelsBtn');
+    const brandsContainer = document.getElementById('brandsContainer');
+    const modelsContainer = document.getElementById('modelsContainer');
+    const customTitle = document.getElementById('customTitle');
+    const imageUpload = document.getElementById('imageUpload');
+    const imageContainer = document.getElementById('imageContainer');
+    const phoneOverlay = document.getElementById('phoneOverlay');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const buyAllBtn = document.getElementById('buyAllBtn');
+    const continueShoppingBtn = document.getElementById('continueShoppingBtn');
+    const toggleCamerasBtn = document.getElementById('toggleCamerasBtn');
+    const exportDesignBtn = document.getElementById('exportDesignBtn');
+    let currentBrand = '', currentModel = '', selectedElement = null;
+    let cart = JSON.parse(localStorage.getItem('skinCart') || '[]');
+    // === INICIO ===
+    document.addEventListener('DOMContentLoaded', () => {
+        createParticles();
+        loadBrands();
+        loadEmojis();
+        updateCartUI();
+        continueBtn.addEventListener('click', () => { welcomeScreen.style.display = 'none'; selectionScreen.style.display = 'block'; });
+        backToSelectionBtn.addEventListener('click', showSelectionScreenFromCustomization);
+        backToModelsBtn.addEventListener('click', showBrandsFromModels);
+        imageUpload.addEventListener('change', handleImageUpload);
+        document.getElementById('addTextBtn').addEventListener('click', () => document.getElementById('textModal').style.display = 'flex');
+        document.getElementById('addEmojiBtn').addEventListener('click', () => document.getElementById('emojiModal').style.display = 'flex');
+        document.getElementById('cancelTextBtn').addEventListener('click', () => document.getElementById('textModal').style.display = 'none');
+        document.getElementById('cancelEmojiBtn').addEventListener('click', () => document.getElementById('emojiModal').style.display = 'none');
+        document.getElementById('addTextModalBtn').addEventListener('click', addTextToDesign);
+        document.getElementById('clearBtn').addEventListener('click', clearDesign);
+        document.getElementById('addToCartBtn').addEventListener('click', addToCart);
+        document.getElementById('addAnotherBtn').addEventListener('click', showSelectionScreenFromCustomization);
+        buyAllBtn.addEventListener('click', buyAllViaWhatsApp);
+        toggleCamerasBtn.addEventListener('click', toggleCameraVisibility);
+        continueShoppingBtn.addEventListener('click', () => cartOverlay.style.display = 'none');
+        exportDesignBtn.addEventListener('click', exportDesign);
+        // TRANSFORM
+        document.getElementById('zoomInBtn').addEventListener('click', () => {
+            if (selectedElement) {
+                const s = (parseFloat(selectedElement.dataset.scale) || 1) + 0.1;
+                selectedElement.dataset.scale = Math.min(s, 5).toFixed(2);
+                updateTransform();
+            }
         });
-        // === PARTÍCULAS ===
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.top = Math.random() * 100 + '%';
-                p.style.animationDelay = Math.random() * 5 + 's';
-                p.style.background = Math.random() > 0.5 ? 'var(--accent)' : 'var(--btn)';
-                container.appendChild(p);
+
+        document.getElementById('zoomOutBtn').addEventListener('click', () => {
+            if (selectedElement) {
+                const s = (parseFloat(selectedElement.dataset.scale) || 1) - 0.1;
+                if (s >= 0.3) {
+                    selectedElement.dataset.scale = s.toFixed(2);
+                    updateTransform();
+                }
             }
-        }
-        // === CONFETTI ===
-        function launchConfetti() {
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.background = ['#00CED1', '#8B00FF', '#FFD700', '#FF4500'][Math.floor(Math.random() * 4)];
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 3000);
+        });
+
+        document.getElementById('rotateLeftBtn').addEventListener('click', () => {
+            if (selectedElement) {
+                const r = (parseFloat(selectedElement.dataset.rotation) || 0) - 15;
+                selectedElement.dataset.rotation = r;
+                updateTransform();
             }
+        });
+
+        document.getElementById('rotateRightBtn').addEventListener('click', () => {
+            if (selectedElement) {
+                const r = (parseFloat(selectedElement.dataset.rotation) || 0) + 15;
+                selectedElement.dataset.rotation = r;
+                updateTransform();
+            }
+        });
+
+        document.getElementById('flipHorizontalBtn').addEventListener('click', () => {
+            if (selectedElement) {
+                selectedElement.dataset.isFlipped = selectedElement.dataset.isFlipped !== 'true';
+                updateTransform();
+            }
+        });
+        // Botón flotante carrito
+        const cartBtn = document.createElement('button');
+        cartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+        cartBtn.className = 'btn';
+        cartBtn.style.position = 'fixed'; cartBtn.style.bottom = '20px'; cartBtn.style.right = '20px'; cartBtn.style.zIndex = '1000';
+        cartBtn.onclick = () => cartOverlay.style.display = 'flex';
+        document.body.appendChild(cartBtn);
+        // Modo oscuro
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('#darkModeToggle i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        });
+    });
+    // === PARTÍCULAS ===
+    function createParticles() {
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 5 + 's';
+            p.style.background = Math.random() > 0.5 ? 'var(--accent)' : 'var(--btn)';
+            container.appendChild(p);
         }
-        // === SISTEMA DE CÁMARAS EXACTAS MEJORADO ===
-        function drawBackCameras(model) {
-            const overlay = phoneOverlay;
-            overlay.innerHTML = '';
-            const camera = phoneData[currentBrand].find(m => m.name === model);
-            if (!camera) return;
-            // Crear el módulo de cámara principal
-            const module = document.createElement('div');
-            module.className = 'camera-module';
-            // Configurar el módulo según el tipo
-            let moduleStyles = {
+    }
+    // === CONFETTI ===
+    function launchConfetti() {
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.background = ['#00CED1', '#8B00FF', '#FFD700', '#FF4500'][Math.floor(Math.random() * 4)];
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }
+    }
+    // === SISTEMA DE CÁMARAS EXACTAS MEJORADO ===
+    function drawBackCameras(model) {
+        const overlay = phoneOverlay;
+        overlay.innerHTML = '';
+        const camera = phoneData[currentBrand].find(m => m.name === model);
+        if (!camera) return;
+        // Crear el módulo de cámara principal
+        const module = document.createElement('div');
+        module.className = 'camera-module';
+        // Configurar el módulo según el tipo
+        let moduleStyles = {
+            position: 'absolute',
+            top: '25px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            background: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '6px',
+            padding: '8px 12px',
+            zIndex: '20'
+        };
+        // Aplicar estilos según el tipo de módulo
+        switch(camera.module) {
+            case 'oval':
+                moduleStyles.borderRadius = '25px';
+                moduleStyles.width = camera.size.split('x')[1] + 'px';
+                moduleStyles.height = camera.size.split('x')[0] + 'px';
+                break;
+            case 'pill':
+                moduleStyles.borderRadius = '40px';
+                moduleStyles.width = camera.size.split('x')[1] + 'px';
+                moduleStyles.height = camera.size.split('x')[0] + 'px';
+                break;
+            case 'square':
+                moduleStyles.borderRadius = '12px';
+                moduleStyles.width = camera.size.split('x')[1] + 'px';
+                moduleStyles.height = camera.size.split('x')[0] + 'px';
+                break;
+            case 'rect':
+                moduleStyles.borderRadius = '15px';
+                moduleStyles.width = camera.size.split('x')[1] + 'px';
+                moduleStyles.height = camera.size.split('x')[0] + 'px';
+                break;
+            case 'circle':
+                moduleStyles.borderRadius = '50%';
+                moduleStyles.width = camera.size.split('x')[0] + 'px';
+                moduleStyles.height = camera.size.split('x')[0] + 'px';
+                break;
+        }
+        // Aplicar estilos al módulo
+        Object.assign(module.style, moduleStyles);
+        // Crear lentes según el tipo de cámara
+        const lensCount = getLensCount(camera.cameraType);
+        const lensConfig = getLensConfig(camera.cameraType, camera.size);
+        for (let i = 0; i < lensCount; i++) {
+            const lens = document.createElement('div');
+            lens.className = 'camera-lens';
+            const lensStyles = {
+                borderRadius: '50%',
+                background: 'radial-gradient(circle at 30% 30%, #333, #000)',
+                border: '1px solid #444',
+                position: 'relative'
+            };
+            // Tamaño y posición de lentes específicos
+            if (lensConfig[i]) {
+                Object.assign(lens.style, lensStyles, lensConfig[i]);
+            }
+            // Efecto de reflejo en la lente
+            const reflection = document.createElement('div');
+            reflection.style.cssText = `
+                position: absolute; top: 15%; left: 20%; width: 30%; height: 20%;
+                background: rgba(255,255,255,0.1); border-radius: 50%; transform: rotate(-45deg);
+            `;
+            lens.appendChild(reflection);
+            module.appendChild(lens);
+        }
+        // Agregar flash si corresponde
+        if (camera.flash !== 'none') {
+            const flash = document.createElement('div');
+            flash.className = 'camera-flash';
+            const flashStyles = {
                 position: 'absolute',
-                top: '25px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                background: 'rgba(0, 0, 0, 0.8)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                padding: '8px 12px',
-                zIndex: '20'
+                background: 'linear-gradient(45deg, #fff, #eee)',
+                borderRadius: '50%',
+                border: '1px solid #ddd'
             };
-            // Aplicar estilos según el tipo de módulo
-            switch(camera.module) {
-                case 'oval':
-                    moduleStyles.borderRadius = '25px';
-                    moduleStyles.width = camera.size.split('x')[1] + 'px';
-                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+            // Posicionar el flash según la configuración
+            switch(camera.flash) {
+                case 'below':
+                    flashStyles.bottom = '-12px';
+                    flashStyles.left = '50%';
+                    flashStyles.transform = 'translateX(-50%)';
+                    flashStyles.width = '10px';
+                    flashStyles.height = '10px';
                     break;
-                case 'pill':
-                    moduleStyles.borderRadius = '40px';
-                    moduleStyles.width = camera.size.split('x')[1] + 'px';
-                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                case 'side':
+                    flashStyles.right = '-12px';
+                    flashStyles.top = '50%';
+                    flashStyles.transform = 'translateY(-50%)';
+                    flashStyles.width = '8px';
+                    flashStyles.height = '8px';
                     break;
-                case 'square':
-                    moduleStyles.borderRadius = '12px';
-                    moduleStyles.width = camera.size.split('x')[1] + 'px';
-                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                case 'top':
+                    flashStyles.top = '-12px';
+                    flashStyles.left = '50%';
+                    flashStyles.transform = 'translateX(-50%)';
+                    flashStyles.width = '9px';
+                    flashStyles.height = '9px';
                     break;
-                case 'rect':
-                    moduleStyles.borderRadius = '15px';
-                    moduleStyles.width = camera.size.split('x')[1] + 'px';
-                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                case 'diagonal':
+                    flashStyles.bottom = '8px';
+                    flashStyles.right = '8px';
+                    flashStyles.width = '7px';
+                    flashStyles.height = '7px';
                     break;
-                case 'circle':
-                    moduleStyles.borderRadius = '50%';
-                    moduleStyles.width = camera.size.split('x')[0] + 'px';
-                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                case 'integrated':
+                    // Flash integrado en el módulo (como en Samsung)
+                    flashStyles.background = 'linear-gradient(45deg, #fff8e1, #ffecb3)';
+                    flashStyles.width = '12px';
+                    flashStyles.height = '6px';
+                    flashStyles.borderRadius = '3px';
+                    flashStyles.right = '10px';
+                    flashStyles.top = '50%';
+                    flashStyles.transform = 'translateY(-50%)';
                     break;
             }
-            // Aplicar estilos al módulo
-            Object.assign(module.style, moduleStyles);
-            // Crear lentes según el tipo de cámara
-            const lensCount = getLensCount(camera.cameraType);
-            const lensConfig = getLensConfig(camera.cameraType, camera.size);
-            for (let i = 0; i < lensCount; i++) {
-                const lens = document.createElement('div');
-                lens.className = 'camera-lens';
-                const lensStyles = {
-                    borderRadius: '50%',
-                    background: 'radial-gradient(circle at 30% 30%, #333, #000)',
-                    border: '1px solid #444',
-                    position: 'relative'
-                };
-                // Tamaño y posición de lentes específicos
-                if (lensConfig[i]) {
-                    Object.assign(lens.style, lensStyles, lensConfig[i]);
+            Object.assign(flash.style, flashStyles);
+            module.appendChild(flash);
+        }
+        // Agregar sensor LiDAR (para iPhone Pro)
+        if (camera.cameraType.includes('pro') || camera.cameraType.includes('lidar')) {
+            const lidar = document.createElement('div');
+            lidar.style.cssText = `
+                position: absolute; bottom: 8px; right: 8px;
+                width: 6px; height: 6px; background: #1a1a1a;
+                border-radius: 50%; border: 1px solid #333;
+            `;
+            module.appendChild(lidar);
+        }
+        overlay.appendChild(module);
+    }
+    // === FUNCIONES AUXILIARES PARA CÁMARAS ===
+    function getLensCount(cameraType) {
+        if (cameraType.includes('penta')) return 5;
+        if (cameraType.includes('quad')) return 4;
+        if (cameraType.includes('triple')) return 3;
+        if (cameraType.includes('dual')) return 2;
+        return 1;
+    }
+    function getLensConfig(cameraType, size) {
+        const [width, height] = size.split('x').map(Number);
+        const configs = [];
+        switch(cameraType) {
+            case 'triple-large':
+                configs.push(
+                    { width: '20px', height: '20px', margin: '0 4px' }, // Lente principal
+                    { width: '16px', height: '16px', margin: '0 4px' }, // Ultra wide
+                    { width: '18px', height: '18px', margin: '0 4px' } // Telefoto
+                );
+                break;
+            case 'dual':
+                configs.push(
+                    { width: '18px', height: '18px', margin: '0 6px' }, // Principal
+                    { width: '14px', height: '14px', margin: '0 6px' } // Secundaria
+                );
+                break;
+            case 'single':
+                configs.push({ width: '22px', height: '22px' });
+                break;
+            case 'triple-samsung':
+                // Disposición vertical típica de Samsung
+                configs.push(
+                    { width: '18px', height: '18px', margin: '2px 0' },
+                    { width: '16px', height: '16px', margin: '2px 0' },
+                    { width: '14px', height: '14px', margin: '2px 0' }
+                );
+                break;
+            case 'penta-samsung':
+                // Galaxy S24 Ultra con 5 lentes
+                configs.push(
+                    { width: '20px', height: '20px', margin: '2px' },
+                    { width: '16px', height: '16px', margin: '2px' },
+                    { width: '14px', height: '14px', margin: '2px' },
+                    { width: '12px', height: '12px', margin: '2px' },
+                    { width: '10px', height: '10px', margin: '2px' }
+                );
+                break;
+            case 'dual-horizontal':
+                configs.push(
+                    { width: '16px', height: '16px', margin: '0 8px' },
+                    { width: '16px', height: '16px', margin: '0 8px' }
+                );
+                break;
+            case 'dual-diagonal':
+                // iPhone 13 estilo diagonal
+                configs.push(
+                    { width: '18px', height: '18px', position: 'absolute', top: '5px', left: '5px' },
+                    { width: '16px', height: '16px', position: 'absolute', bottom: '5px', right: '5px' }
+                );
+                break;
+            default:
+                // Configuración por defecto
+                for (let i = 0; i < getLensCount(cameraType); i++) {
+                    configs.push({ width: '16px', height: '16px', margin: '0 4px' });
                 }
-                // Efecto de reflejo en la lente
-                const reflection = document.createElement('div');
-                reflection.style.cssText = `
-                    position: absolute; top: 15%; left: 20%; width: 30%; height: 20%;
-                    background: rgba(255,255,255,0.1); border-radius: 50%; transform: rotate(-45deg);
-                `;
-                lens.appendChild(reflection);
-                module.appendChild(lens);
-            }
-            // Agregar flash si corresponde
-            if (camera.flash !== 'none') {
-                const flash = document.createElement('div');
-                flash.className = 'camera-flash';
-                const flashStyles = {
-                    position: 'absolute',
-                    background: 'linear-gradient(45deg, #fff, #eee)',
-                    borderRadius: '50%',
-                    border: '1px solid #ddd'
-                };
-                // Posicionar el flash según la configuración
-                switch(camera.flash) {
-                    case 'below':
-                        flashStyles.bottom = '-12px';
-                        flashStyles.left = '50%';
-                        flashStyles.transform = 'translateX(-50%)';
-                        flashStyles.width = '10px';
-                        flashStyles.height = '10px';
-                        break;
-                    case 'side':
-                        flashStyles.right = '-12px';
-                        flashStyles.top = '50%';
-                        flashStyles.transform = 'translateY(-50%)';
-                        flashStyles.width = '8px';
-                        flashStyles.height = '8px';
-                        break;
-                    case 'top':
-                        flashStyles.top = '-12px';
-                        flashStyles.left = '50%';
-                        flashStyles.transform = 'translateX(-50%)';
-                        flashStyles.width = '9px';
-                        flashStyles.height = '9px';
-                        break;
-                    case 'diagonal':
-                        flashStyles.bottom = '8px';
-                        flashStyles.right = '8px';
-                        flashStyles.width = '7px';
-                        flashStyles.height = '7px';
-                        break;
-                    case 'integrated':
-                        // Flash integrado en el módulo (como en Samsung)
-                        flashStyles.background = 'linear-gradient(45deg, #fff8e1, #ffecb3)';
-                        flashStyles.width = '12px';
-                        flashStyles.height = '6px';
-                        flashStyles.borderRadius = '3px';
-                        flashStyles.right = '10px';
-                        flashStyles.top = '50%';
-                        flashStyles.transform = 'translateY(-50%)';
-                        break;
-                }
-                Object.assign(flash.style, flashStyles);
-                module.appendChild(flash);
-            }
-            // Agregar sensor LiDAR (para iPhone Pro)
-            if (camera.cameraType.includes('pro') || camera.cameraType.includes('lidar')) {
-                const lidar = document.createElement('div');
-                lidar.style.cssText = `
-                    position: absolute; bottom: 8px; right: 8px;
-                    width: 6px; height: 6px; background: #1a1a1a;
-                    border-radius: 50%; border: 1px solid #333;
-                `;
-                module.appendChild(lidar);
-            }
-            overlay.appendChild(module);
         }
-        // === FUNCIONES AUXILIARES PARA CÁMARAS ===
-        function getLensCount(cameraType) {
-            if (cameraType.includes('penta')) return 5;
-            if (cameraType.includes('quad')) return 4;
-            if (cameraType.includes('triple')) return 3;
-            if (cameraType.includes('dual')) return 2;
-            return 1;
-        }
-        function getLensConfig(cameraType, size) {
-            const [width, height] = size.split('x').map(Number);
-            const configs = [];
-            switch(cameraType) {
-                case 'triple-large':
-                    configs.push(
-                        { width: '20px', height: '20px', margin: '0 4px' }, // Lente principal
-                        { width: '16px', height: '16px', margin: '0 4px' }, // Ultra wide
-                        { width: '18px', height: '18px', margin: '0 4px' } // Telefoto
-                    );
-                    break;
-                case 'dual':
-                    configs.push(
-                        { width: '18px', height: '18px', margin: '0 6px' }, // Principal
-                        { width: '14px', height: '14px', margin: '0 6px' } // Secundaria
-                    );
-                    break;
-                case 'single':
-                    configs.push({ width: '22px', height: '22px' });
-                    break;
-                case 'triple-samsung':
-                    // Disposición vertical típica de Samsung
-                    configs.push(
-                        { width: '18px', height: '18px', margin: '2px 0' },
-                        { width: '16px', height: '16px', margin: '2px 0' },
-                        { width: '14px', height: '14px', margin: '2px 0' }
-                    );
-                    break;
-                case 'penta-samsung':
-                    // Galaxy S24 Ultra con 5 lentes
-                    configs.push(
-                        { width: '20px', height: '20px', margin: '2px' },
-                        { width: '16px', height: '16px', margin: '2px' },
-                        { width: '14px', height: '14px', margin: '2px' },
-                        { width: '12px', height: '12px', margin: '2px' },
-                        { width: '10px', height: '10px', margin: '2px' }
-                    );
-                    break;
-                case 'dual-horizontal':
-                    configs.push(
-                        { width: '16px', height: '16px', margin: '0 8px' },
-                        { width: '16px', height: '16px', margin: '0 8px' }
-                    );
-                    break;
-                case 'dual-diagonal':
-                    // iPhone 13 estilo diagonal
-                    configs.push(
-                        { width: '18px', height: '18px', position: 'absolute', top: '5px', left: '5px' },
-                        { width: '16px', height: '16px', position: 'absolute', bottom: '5px', right: '5px' }
-                    );
-                    break;
-                default:
-                    // Configuración por defecto
-                    for (let i = 0; i < getLensCount(cameraType); i++) {
-                        configs.push({ width: '16px', height: '16px', margin: '0 4px' });
-                    }
-            }
-            return configs;
-        }
-        // === CONTROL DE VISIBILIDAD DE CÁMARAS ===
-        function toggleCameraVisibility() {
-            const overlay = document.getElementById('phoneOverlay');
-            const isVisible = overlay.style.display !== 'none';
-            overlay.style.display = isVisible ? 'none' : 'block';
-            toggleCamerasBtn.innerHTML = isVisible ? '<i class="fas fa-camera"></i>' : '<i class="fas fa-eye-slash"></i>';
-            toggleCamerasBtn.title = isVisible ? 'Mostrar cámaras' : 'Ocultar cámaras';
-        }
-        // === GUARDAR DISEÑO ===
-        async function addToCart() {
-            const skinType = document.querySelector('.skin-type.active').dataset.type;
-            const description = `${currentBrand} ${currentModel} - ${skinType} - $31.500`;
-            const phoneFrame = document.querySelector('.phone-frame');
-            const canvas = await html2canvas(phoneFrame, { scale: 2 });
-            const designBase64 = canvas.toDataURL('image/png');
-            cart.push({ description, price: 31500, designBase64, model: currentModel });
-            localStorage.setItem('skinCart', JSON.stringify(cart));
-            updateCartUI();
-            launchConfetti();
-            alert('¡Agregado al carrito!');
-        }
-        // === EXPORTAR DISEÑO ===
-        async function exportDesign() {
-            const phoneFrame = document.querySelector('.phone-frame');
-            const canvas = await html2canvas(phoneFrame, { scale: 2 });
-            const link = document.createElement('a');
-            link.download = `${currentBrand}_${currentModel}_design.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
-        // === WHATSAPP SIN NEQUI ===
-        function buyAllViaWhatsApp() {
-            if (cart.length === 0) return alert('Tu carrito está vacío.');
-            let message = "Hola, quiero comprar:\n\n";
-            let total = 0;
-            cart.forEach(item => {
-                message += `• ${item.description}\n`;
-                total += item.price;
-            });
-            message += `\n*Total: $${total.toLocaleString()}*\n\nAdjuntaré los diseños por separado en WhatsApp.`;
-            const phone = "573025852451";
-            const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-        // === RESTO DE FUNCIONES ===
-        function loadBrands() {
-            brandsContainer.innerHTML = '';
-            Object.keys(phoneData).forEach(brand => {
-                const card = document.createElement('div');
-                card.className = 'brand-card';
-                card.innerHTML = `<div class="brand-logo"><i class="fas fa-mobile-alt"></i></div><div class="brand-name">${brand}</div>`;
-                card.onclick = () => loadModels(brand);
-                brandsContainer.appendChild(card);
-            });
-        }
-        function loadModels(brand) {
-            currentBrand = brand;
-            modelsContainer.innerHTML = '';
-            phoneData[brand].forEach(model => {
-                const card = document.createElement('div');
-                card.className = 'model-card';
-                card.innerHTML = `<div class="model-name">${model.name}</div>`;
-                card.onclick = () => startCustomization(brand, model.name);
-                modelsContainer.appendChild(card);
-            });
-            brandsContainer.style.display = 'none';
-            modelsContainer.style.display = 'grid';
-            backToModelsBtn.style.display = 'block';
-        }
-        function showBrandsFromModels() {
-            modelsContainer.style.display = 'none';
-            brandsContainer.style.display = 'grid';
-            backToModelsBtn.style.display = 'none';
-        }
-        function startCustomization(brand, model) {
-            currentModel = model;
-            customTitle.textContent = `Personaliza tu ${brand} ${model}`;
-            selectionScreen.style.display = 'none';
-            customizationScreen.style.display = 'block';
-            clearDesign();
-            drawBackCameras(model);
-        }
-        function showSelectionScreenFromCustomization() {
-            customizationScreen.style.display = 'none';
-            selectionScreen.style.display = 'block';
-            modelsContainer.style.display = 'grid';
-            brandsContainer.style.display = 'none';
-            backToModelsBtn.style.display = 'block';
-        }
-        function handleImageUpload(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const img = document.createElement('img');
-                img.src = event.target.result;
-                img.className = 'custom-element custom-image';
-                img.style.left = '50%'; img.style.top = '50%'; img.style.transform = 'translate(-50%, -50%)';
-                imageContainer.querySelector('.default-message')?.remove();
-                imageContainer.appendChild(img);
-                makeDraggable(img);
-                selectElement(img);
+        return configs;
+    }
+    // === CONTROL DE VISIBILIDAD DE CÁMARAS ===
+    function toggleCameraVisibility() {
+        const overlay = document.getElementById('phoneOverlay');
+        const isVisible = overlay.style.display !== 'none';
+        overlay.style.display = isVisible ? 'none' : 'block';
+        toggleCamerasBtn.innerHTML = isVisible ? '<i class="fas fa-camera"></i>' : '<i class="fas fa-eye-slash"></i>';
+        toggleCamerasBtn.title = isVisible ? 'Mostrar cámaras' : 'Ocultar cámaras';
+    }
+    // === GUARDAR DISEÑO ===
+    async function addToCart() {
+        const skinType = document.querySelector('.skin-type.active').dataset.type;
+        const description = `${currentBrand} ${currentModel} - ${skinType} - $31.500`;
+        const phoneFrame = document.querySelector('.phone-frame');
+        const canvas = await html2canvas(phoneFrame, { scale: 2 });
+        const designBase64 = canvas.toDataURL('image/png');
+        cart.push({ description, price: 31500, designBase64, model: currentModel });
+        localStorage.setItem('skinCart', JSON.stringify(cart));
+        updateCartUI();
+        launchConfetti();
+        alert('¡Agregado al carrito!');
+    }
+    // === EXPORTAR DISEÑO ===
+    async function exportDesign() {
+        const phoneFrame = document.querySelector('.phone-frame');
+        const canvas = await html2canvas(phoneFrame, { scale: 2 });
+        const link = document.createElement('a');
+        link.download = `${currentBrand}_${currentModel}_design.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }
+    // === WHATSAPP SIN NEQUI ===
+    function buyAllViaWhatsApp() {
+        if (cart.length === 0) return alert('Tu carrito está vacío.');
+        let message = "Hola, quiero comprar:\n\n";
+        let total = 0;
+        cart.forEach(item => {
+            message += `• ${item.description}\n`;
+            total += item.price;
+        });
+        message += `\n*Total: $${total.toLocaleString()}*`;
+        const phone = "573025852451";
+        const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    }
+    // === RESTO DE FUNCIONES ===
+    function loadBrands() {
+        brandsContainer.innerHTML = '';
+        Object.keys(phoneData).forEach(brand => {
+            const card = document.createElement('div');
+            card.className = 'brand-card';
+            card.innerHTML = `<div class="brand-logo"><i class="fas fa-mobile-alt"></i></div><div class="brand-name">${brand}</div>`;
+            card.onclick = () => loadModels(brand);
+            brandsContainer.appendChild(card);
+        });
+    }
+    function loadModels(brand) {
+        currentBrand = brand;
+        modelsContainer.innerHTML = '';
+        phoneData[brand].forEach(model => {
+            const card = document.createElement('div');
+            card.className = 'model-card';
+            card.innerHTML = `<div class="model-name">${model.name}</div>`;
+            card.onclick = () => startCustomization(brand, model.name);
+            modelsContainer.appendChild(card);
+        });
+        brandsContainer.style.display = 'none';
+        modelsContainer.style.display = 'grid';
+        backToModelsBtn.style.display = 'block';
+    }
+    function showBrandsFromModels() {
+        modelsContainer.style.display = 'none';
+        brandsContainer.style.display = 'grid';
+        backToModelsBtn.style.display = 'none';
+    }
+    function startCustomization(brand, model) {
+        currentModel = model;
+        customTitle.textContent = `Personaliza tu ${brand} ${model}`;
+        selectionScreen.style.display = 'none';
+        customizationScreen.style.display = 'block';
+        clearDesign();
+        drawBackCameras(model);
+    }
+    function showSelectionScreenFromCustomization() {
+        customizationScreen.style.display = 'none';
+        selectionScreen.style.display = 'block';
+        modelsContainer.style.display = 'grid';
+        brandsContainer.style.display = 'none';
+        backToModelsBtn.style.display = 'block';
+    }
+    function handleImageUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = document.createElement('img');
+            img.src = event.target.result;
+            img.className = 'custom-element custom-image';
+            img.style.left = '50%'; img.style.top = '50%'; img.style.transform = 'translate(-50%, -50%)';
+            imageContainer.querySelector('.default-message')?.remove();
+            imageContainer.appendChild(img);
+            makeDraggable(img);
+            img.dataset.scale = '1';
+            img.dataset.rotation = '0';
+            img.dataset.isFlipped = 'false';
+            enableGestures(img);
+            selectElement(img);
+        };
+        reader.readAsDataURL(file);
+    }
+    function addTextToDesign() {
+        const text = document.getElementById('textInput').value;
+        const color = document.getElementById('textColor').value;
+        const size = document.getElementById('textSize').value;
+        if (!text) return;
+        const span = document.createElement('span');
+        span.className = 'custom-element custom-text';
+        span.textContent = text;
+        span.style.color = color;
+        span.style.fontSize = size + 'px';
+        span.style.left = '50%'; span.style.top = '50%'; span.style.transform = 'translate(-50%, -50%)';
+        imageContainer.appendChild(span);
+        makeDraggable(span);
+        span.dataset.scale = '1';
+        span.dataset.rotation = '0';
+        span.dataset.isFlipped = 'false';
+        enableGestures(span);
+        selectElement(span);
+        document.getElementById('textModal').style.display = 'none';
+        document.getElementById('textInput').value = '';
+    }
+    function loadEmojis() {
+        const grid = document.getElementById('emojiGrid');
+        const emojis = ["❤️","✨","⭐","🔥","😎","🚀","🌟","💎","🎨","🎉","😍","🎊","🤩","💪","⚡","🌈","🎯","💯","👑","💰"];
+        emojis.forEach(e => {
+            const div = document.createElement('div');
+            div.className = 'emoji-item';
+            div.textContent = e;
+            div.onclick = () => {
+                const span = document.createElement('span');
+                span.className = 'custom-element custom-emoji';
+                span.textContent = e;
+                span.style.left = '50%'; span.style.top = '50%'; span.style.transform = 'translate(-50%, -50%)';
+                imageContainer.appendChild(span);
+                makeDraggable(span);
+                span.dataset.scale = '1';
+                span.dataset.rotation = '0';
+                span.dataset.isFlipped = 'false';
+                enableGestures(span);
+                selectElement(span);
+                document.getElementById('emojiModal').style.display = 'none';
             };
-            reader.readAsDataURL(file);
+            grid.appendChild(div);
+        });
+    }
+    function makeDraggable(el) {
+        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        el.onpointerdown = dragMouseDown; // Usar pointerdown para mejor soporte en móvil
+        function dragMouseDown(e) {
+            e.preventDefault();
+            selectElement(el);
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onpointerup = closeDragElement;
+            document.onpointermove = elementDrag;
         }
-        function addTextToDesign() {
-            const text = document.getElementById('textInput').value;
-            const color = document.getElementById('textColor').value;
-            const size = document.getElementById('textSize').value;
-            if (!text) return;
-            const span = document.createElement('span');
-            span.className = 'custom-element custom-text';
-            span.textContent = text;
-            span.style.color = color;
-            span.style.fontSize = size + 'px';
-            span.style.left = '50%'; span.style.top = '50%'; span.style.transform = 'translate(-50%, -50%)';
-            imageContainer.appendChild(span);
-            makeDraggable(span);
-            selectElement(span);
-            document.getElementById('textModal').style.display = 'none';
-            document.getElementById('textInput').value = '';
+        function elementDrag(e) {
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            el.style.top = (el.offsetTop - pos2) + "px";
+            el.style.left = (el.offsetLeft - pos1) + "px";
         }
-        function loadEmojis() {
-            const grid = document.getElementById('emojiGrid');
-            const emojis = ["❤️","✨","⭐","🔥","😎","🚀","🌟","💎","🎨","🎉","😍","🎊","🤩","💪","⚡","🌈","🎯","💯","👑","💰"];
-            emojis.forEach(e => {
-                const div = document.createElement('div');
-                div.className = 'emoji-item';
-                div.textContent = e;
-                div.onclick = () => {
-                    const span = document.createElement('span');
-                    span.className = 'custom-element custom-emoji';
-                    span.textContent = e;
-                    span.style.left = '50%'; span.style.top = '50%'; span.style.transform = 'translate(-50%, -50%)';
-                    imageContainer.appendChild(span);
-                    makeDraggable(span);
-                    selectElement(span);
-                    document.getElementById('emojiModal').style.display = 'none';
-                };
-                grid.appendChild(div);
-            });
+        function closeDragElement() {
+            document.onpointerup = null;
+            document.onpointermove = null;
         }
-        function makeDraggable(el) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            el.onpointerdown = dragMouseDown; // Usar pointerdown para mejor soporte en móvil
-            function dragMouseDown(e) {
+    }
+    function selectElement(el) {
+        selectedElement = el;
+        document.querySelectorAll('.custom-element').forEach(e => e.style.outline = 'none');
+        el.style.outline = '2px dashed var(--accent)';
+        el.style.zIndex = 100;
+        // Asegurar que el elemento seleccionado esté encima
+        document.querySelectorAll('.custom-element').forEach(e => {
+            if (e !== el) e.style.zIndex = 5;
+        });
+    }
+    function updateTransform() {
+        if (!selectedElement) return;
+        const s = parseFloat(selectedElement.dataset.scale) || 1;
+        const r = parseFloat(selectedElement.dataset.rotation) || 0;
+        const f = selectedElement.dataset.isFlipped === 'true';
+        selectedElement.style.transform = `translate(-50%, -50%) scale(${s}) rotate(${r}deg) ${f ? 'scaleX(-1)' : ''}`;
+    }
+    function getDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.hypot(dx, dy);
+    }
+    function getAngle(touches) {
+        const dx = touches[1].clientX - touches[0].clientX;
+        const dy = touches[1].clientY - touches[0].clientY;
+        return Math.atan2(dy, dx) * 180 / Math.PI;
+    }
+    function enableGestures(el) {
+        let startDist, startAngle, startScale, startRot, startX, startY, centerX, centerY;
+
+        el.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2) {
                 e.preventDefault();
                 selectElement(el);
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onpointerup = closeDragElement;
-                document.onpointermove = elementDrag;
+
+                startDist = getDistance(e.touches);
+                startAngle = getAngle(e.touches);
+                startScale = parseFloat(el.dataset.scale) || 1;
+                startRot = parseFloat(el.dataset.rotation) || 0;
+
+                const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+                const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+                startX = el.offsetLeft;
+                startY = el.offsetTop;
+                centerX = midX - startX;
+                centerY = midY - startY;
             }
-            function elementDrag(e) {
+        }, { passive: false });
+
+        el.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2) {
                 e.preventDefault();
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                el.style.top = (el.offsetTop - pos2) + "px";
-                el.style.left = (el.offsetLeft - pos1) + "px";
+
+                const currentDist = getDistance(e.touches);
+                const currentAngle = getAngle(e.touches);
+
+                const scale = startScale * (currentDist / startDist);
+                const rotation = startRot + (currentAngle - startAngle);
+
+                el.dataset.scale = Math.max(0.3, Math.min(scale, 5)).toFixed(2);
+                el.dataset.rotation = rotation.toFixed(0);
+                updateTransform();
+
+                // Ajustar posición para que el zoom gire alrededor del centro de los dedos
+                const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+                const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+                const offsetX = midX - startX - centerX * scale;
+                const offsetY = midY - startY - centerY * scale;
+
+                el.style.left = (startX + offsetX) + 'px';
+                el.style.top = (startY + offsetY) + 'px';
             }
-            function closeDragElement() {
-                document.onpointerup = null;
-                document.onpointermove = null;
-            }
-        }
-        function selectElement(el) {
-            selectedElement = el;
-            document.querySelectorAll('.custom-element').forEach(e => e.style.outline = 'none');
-            el.style.outline = '2px dashed var(--accent)';
-            el.style.zIndex = 100;
-            // Asegurar que el elemento seleccionado esté encima
-            document.querySelectorAll('.custom-element').forEach(e => {
-                if (e !== el) e.style.zIndex = 5;
-            });
-        }
-        function updateTransform() {
-            if (!selectedElement) return;
-            selectedElement.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${rotation}deg) ${isFlipped ? 'scaleX(-1)' : ''}`;
-        }
-        function clearDesign() {
-            imageContainer.innerHTML = `
-                <div class="default-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
-                    <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 10px; display: block;"></i>
-                    <p>Tu diseño aparecerá aquí</p>
+        }, { passive: false });
+    }
+    function clearDesign() {
+        imageContainer.innerHTML = `
+            <div class="default-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
+                <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 10px; display: block;"></i>
+                <p>Tu diseño aparecerá aquí</p>
+            </div>`;
+        selectedElement = null;
+    }
+    function updateCartUI() {
+        cartItems.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, i) => {
+            const div = document.createElement('div');
+            div.className = 'cart-item';
+            div.innerHTML = `
+                <div>
+                    <strong>${item.description}</strong>
+                    <br><small style="color: #666;">${currentBrand} ${item.model}</small>
+                </div>
+                <div>
+                    <span style="font-weight: 700;">$${item.price.toLocaleString()}</span>
+                    <button onclick="removeFromCart(${i})" style="background: #ff4444; color: #fff; border: none; padding: 5px 10px; border-radius: 8px; margin-left: 10px; cursor: pointer;">Eliminar</button>
                 </div>`;
-            selectedElement = null;
-            scale = 1;
-            rotation = 0;
-            isFlipped = false;
-        }
-        function updateCartUI() {
-            cartItems.innerHTML = '';
-            let total = 0;
-            cart.forEach((item, i) => {
-                const div = document.createElement('div');
-                div.className = 'cart-item';
-                div.innerHTML = `
-                    <div>
-                        <strong>${item.description}</strong>
-                        <br><small style="color: #666;">${currentBrand} ${item.model}</small>
-                    </div>
-                    <div>
-                        <span style="font-weight: 700;">$${item.price.toLocaleString()}</span>
-                        <button onclick="removeFromCart(${i})" style="background: #ff4444; color: #fff; border: none; padding: 5px 10px; border-radius: 8px; margin-left: 10px; cursor: pointer;">Eliminar</button>
-                    </div>`;
-                cartItems.appendChild(div);
-                total += item.price;
-            });
-            cartTotal.textContent = `Total: $${total.toLocaleString()}`;
-            // Actualizar contador del carrito flotante
-            const cartBtn = document.querySelector('button[style*="fixed"][style*="bottom"]');
-            if (cartBtn) cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> ${cart.length}`;
-        }
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            localStorage.setItem('skinCart', JSON.stringify(cart));
+            cartItems.appendChild(div);
+            total += item.price;
+        });
+        cartTotal.textContent = `Total: $${total.toLocaleString()}`;
+        // Actualizar contador del carrito flotante
+        const cartBtn = document.querySelector('button[style*="fixed"][style*="bottom"]');
+        if (cartBtn) cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> ${cart.length}`;
+    }
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('skinCart', JSON.stringify(cart));
+        updateCartUI();
+    }
+    function clearCart() {
+        if (confirm('¿Seguro que quieres vaciar el carrito?')) {
+            cart = [];
+            localStorage.setItem('skinCart', '[]');
             updateCartUI();
+            cartOverlay.style.display = 'none';
         }
-        function clearCart() {
-            if (confirm('¿Seguro que quieres vaciar el carrito?')) {
-                cart = [];
-                localStorage.setItem('skinCart', '[]');
-                updateCartUI();
-                cartOverlay.style.display = 'none';
+    }
+    // === CIERRE DE MODALES AL HACER CLIC FUERA ===
+    window.onclick = function(event) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
             }
+        });
+        if (event.target === cartOverlay) {
+            cartOverlay.style.display = 'none';
         }
-        // === CIERRE DE MODALES AL HACER CLIC FUERA ===
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-            if (event.target === cartOverlay) {
-                cartOverlay.style.display = 'none';
-            }
+    };
+    // === SOPORTE TÁCTIL PARA BOTONES DE TRANSFORMACIÓN ===
+    document.querySelectorAll('.transform-btn').forEach(btn => {
+        btn.ontouchstart = function(e) {
+            e.preventDefault();
+            btn.click();
         };
-        // === SOPORTE TÁCTIL PARA BOTONES DE TRANSFORMACIÓN ===
-        document.querySelectorAll('.transform-btn').forEach(btn => {
-            btn.ontouchstart = function(e) {
-                e.preventDefault();
-                btn.click();
-            };
-        });
-        // === ANIMACIÓN DE ENTRADA EN MÓVIL ===
-        if (window.innerWidth <= 768) {
-            document.querySelectorAll('.brand-card, .model-card').forEach((card, i) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                setTimeout(() => {
-                    card.style.transition = 'all 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, i * 100);
-            });
-        }
-        // === ANIMACIÓN DE CARGA AL INICIAR ===
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
+    });
+    // === ANIMACIÓN DE ENTRADA EN MÓVIL ===
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll('.brand-card, .model-card').forEach((card, i) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
             setTimeout(() => {
-                document.body.style.transition = 'opacity 0.8s';
-                document.body.style.opacity = '1';
-            }, 100);
+                card.style.transition = 'all 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, i * 100);
         });
-        // === DETECTAR SI ES MÓVIL Y AJUSTAR UI ===
-        if (/Mobi|Android/i.test(navigator.userAgent)) {
-            document.querySelectorAll('button, .btn').forEach(btn => {
-                btn.style.fontSize = '1.1rem';
-                btn.style.padding = '16px 20px';
-            });
-            document.querySelector('.phone-frame').style.transform = 'scale(0.9)';
-        }
-    </script>
+    }
+    // === ANIMACIÓN DE CARGA AL INICIAR ===
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.8s';
+            document.body.style.opacity = '1';
+        }, 100);
+    });
+    // === DETECTAR SI ES MÓVIL Y AJUSTAR UI ===
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+        document.querySelectorAll('button, .btn').forEach(btn => {
+            btn.style.fontSize = '1.1rem';
+            btn.style.padding = '16px 20px';
+        });
+        document.querySelector('.phone-frame').style.transform = 'scale(0.9)';
+    }
+</script>
 </body>
 </html>
