@@ -134,7 +134,7 @@
         .phone-preview { background: var(--card-bg); border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; }
         .phone-frame { width: 300px; height: 600px; background: var(--bg); border-radius: 40px; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin-bottom: 25px; }
         .phone-screen { width: 270px; height: 570px; background: var(--card-bg); border-radius: 30px; position: absolute; top: 15px; left: 15px; overflow: hidden; }
-        .phone-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+        .phone-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 25; }
         .back-cameras { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); }
 
         .custom-image-container { width: 100%; height: 100%; position: relative; overflow: hidden; border: 2px solid transparent; transition: border 0.3s; }
@@ -217,17 +217,49 @@
             to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
 
-        /* CÁMARAS PULSANTES */
+        /* === ESTILOS PARA CÁMARAS REALISTAS === */
+        .camera-module {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         .camera-lens {
-            background: #000; border-radius: 50%; position: relative; animation: pulseLens 2s infinite;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+            animation: pulseLens 3s infinite ease-in-out;
         }
-        .camera-lens::after {
-            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 50%; height: 50%; background: #111; border-radius: 50%;
+
+        .camera-flash {
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+            animation: subtleGlow 2s infinite alternate;
         }
+
+        @keyframes subtleGlow {
+            from { opacity: 0.7; }
+            to { opacity: 0.9; }
+        }
+
         @keyframes pulseLens {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 206, 209, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 206, 209, 0); }
+            0%, 100% { 
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
+                           inset 0 1px 2px rgba(255, 255, 255, 0.2);
+            }
+            50% { 
+                box-shadow: 0 2px 12px rgba(0, 206, 209, 0.3),
+                           inset 0 1px 3px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        /* Asegurar que las cámaras se vean sobre las imágenes */
+        .phone-overlay {
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        .custom-element {
+            z-index: 5;
         }
 
         @media (max-width: 768px) {
@@ -250,14 +282,14 @@
 
     <!-- HEADER -->
     <header>
-        <img src="https://i.imgur.com/9kR5v8P.png" alt="SKIN CASE" class="logo-img">
+        <img src="skin_case.png" alt="SKIN CASE" class="logo-img">
         <h1 style="display: inline; margin-left: 15px; font-weight: 800; color: var(--btn);">SKIN CASE</h1>
     </header>
 
     <!-- BIENVENIDA -->
     <section class="welcome-screen" id="welcomeScreen">
         <div class="container">
-            <img src="https://i.imgur.com/9kR5v8P.png" alt="SKIN CASE" class="logo-img-full" style="height: 130px; margin-bottom: 20px;">
+            <img src="skin_case.png" alt="SKIN CASE" class="logo-img-full" style="height: 130px; margin-bottom: 20px;">
             <h1 style="font-size: 4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--btn)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 SKIN CASE
             </h1>
@@ -333,6 +365,7 @@
                     <div style="display: flex; gap: 10px; margin-bottom: 25px;">
                         <button class="action-btn" id="addEmojiBtn">Emojis</button>
                         <button class="action-btn" id="clearBtn">Limpiar</button>
+                        <button class="action-btn" id="toggleCamerasBtn"><i class="fas fa-camera"></i></button>
                     </div>
 
                     <div class="price-section">
@@ -404,7 +437,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2025 SKIN CASE. Todos los derechos reservados. Bogotá, Colombia.</p>
+        <p>© 2025 SKIN CASE. Todos los derechos reservados. Medellin, Colombia.</p>
     </footer>
 
     <script>
@@ -624,6 +657,7 @@
         const cartTotal = document.getElementById('cartTotal');
         const buyAllBtn = document.getElementById('buyAllBtn');
         const viewDesignsBtn = document.getElementById('viewDesignsBtn');
+        const toggleCamerasBtn = document.getElementById('toggleCamerasBtn');
 
         let currentBrand = '', currentModel = '', selectedElement = null;
         let scale = 1, rotation = 0, isFlipped = false;
@@ -650,6 +684,7 @@
             document.getElementById('addAnotherBtn').addEventListener('click', showSelectionScreenFromCustomization);
             buyAllBtn.addEventListener('click', buyAllViaWhatsApp);
             viewDesignsBtn.addEventListener('click', showSavedDesigns);
+            toggleCamerasBtn.addEventListener('click', toggleCameraVisibility);
 
             // BORDES
             document.querySelectorAll('.border-btn').forEach(btn => {
@@ -711,40 +746,244 @@
             }
         }
 
-        // === CÁMARAS EXACTAS ===
+        // === SISTEMA DE CÁMARAS EXACTAS MEJORADO ===
         function drawBackCameras(model) {
             const overlay = phoneOverlay;
             overlay.innerHTML = '';
             const camera = phoneData[currentBrand].find(m => m.name === model);
             if (!camera) return;
 
+            // Crear el módulo de cámara principal
             const module = document.createElement('div');
-            module.style.cssText = `
-                position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
-                background: #222; border-radius: ${camera.module === 'oval' ? '30px' : camera.module === 'pill' ? '50px' : '22px'};
-                padding: ${camera.size.split('x')[0] / 10}px ${camera.size.split('x')[1] / 10}px;
-                display: flex; flex-direction: ${camera.cameraType.includes('horizontal') ? 'row' : 'column'};
-                gap: 8px; animation: pulseLens 2s infinite;
-            `;
+            module.className = 'camera-module';
+            
+            // Configurar el módulo según el tipo
+            let moduleStyles = {
+                position: 'absolute',
+                top: '25px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: 'rgba(0, 0, 0, 0.8)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '8px 12px',
+                zIndex: '20'
+            };
 
-            const lensCount = camera.cameraType.includes('penta') ? 5 : camera.cameraType.includes('quad') ? 4 : camera.cameraType.includes('triple') ? 3 : camera.cameraType.includes('dual') ? 2 : 1;
+            // Aplicar estilos según el tipo de módulo
+            switch(camera.module) {
+                case 'oval':
+                    moduleStyles.borderRadius = '25px';
+                    moduleStyles.width = camera.size.split('x')[1] + 'px';
+                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                    break;
+                case 'pill':
+                    moduleStyles.borderRadius = '40px';
+                    moduleStyles.width = camera.size.split('x')[1] + 'px';
+                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                    break;
+                case 'square':
+                    moduleStyles.borderRadius = '12px';
+                    moduleStyles.width = camera.size.split('x')[1] + 'px';
+                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                    break;
+                case 'rect':
+                    moduleStyles.borderRadius = '15px';
+                    moduleStyles.width = camera.size.split('x')[1] + 'px';
+                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                    break;
+                case 'circle':
+                    moduleStyles.borderRadius = '50%';
+                    moduleStyles.width = camera.size.split('x')[0] + 'px';
+                    moduleStyles.height = camera.size.split('x')[0] + 'px';
+                    break;
+            }
+
+            // Aplicar estilos al módulo
+            Object.assign(module.style, moduleStyles);
+
+            // Crear lentes según el tipo de cámara
+            const lensCount = getLensCount(camera.cameraType);
+            const lensConfig = getLensConfig(camera.cameraType, camera.size);
+            
             for (let i = 0; i < lensCount; i++) {
                 const lens = document.createElement('div');
                 lens.className = 'camera-lens';
-                lens.style.width = lens.style.height = (parseInt(camera.size.split('x')[0]) / (lensCount > 1 ? lensCount : 2)) + 'px';
+                
+                const lensStyles = {
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle at 30% 30%, #333, #000)',
+                    border: '1px solid #444',
+                    position: 'relative'
+                };
+
+                // Tamaño y posición de lentes específicos
+                if (lensConfig[i]) {
+                    Object.assign(lens.style, lensStyles, lensConfig[i]);
+                }
+                
+                // Efecto de reflejo en la lente
+                const reflection = document.createElement('div');
+                reflection.style.cssText = `
+                    position: absolute; top: 15%; left: 20%; width: 30%; height: 20%;
+                    background: rgba(255,255,255,0.1); border-radius: 50%; transform: rotate(-45deg);
+                `;
+                lens.appendChild(reflection);
+                
                 module.appendChild(lens);
             }
 
-            if (camera.flash === 'below' || camera.flash === 'side' || camera.flash === 'top') {
+            // Agregar flash si corresponde
+            if (camera.flash !== 'none') {
                 const flash = document.createElement('div');
-                flash.style.cssText = 'width: 8px; height: 8px; background: #fff; border-radius: 50%; position: absolute;';
-                if (camera.flash === 'below') flash.style.bottom = '-15px';
-                if (camera.flash === 'side') flash.style.right = '-15px';
-                if (camera.flash === 'top') flash.style.top = '-15px';
+                flash.className = 'camera-flash';
+                
+                const flashStyles = {
+                    position: 'absolute',
+                    background: 'linear-gradient(45deg, #fff, #eee)',
+                    borderRadius: '50%',
+                    border: '1px solid #ddd'
+                };
+
+                // Posicionar el flash según la configuración
+                switch(camera.flash) {
+                    case 'below':
+                        flashStyles.bottom = '-12px';
+                        flashStyles.left = '50%';
+                        flashStyles.transform = 'translateX(-50%)';
+                        flashStyles.width = '10px';
+                        flashStyles.height = '10px';
+                        break;
+                    case 'side':
+                        flashStyles.right = '-12px';
+                        flashStyles.top = '50%';
+                        flashStyles.transform = 'translateY(-50%)';
+                        flashStyles.width = '8px';
+                        flashStyles.height = '8px';
+                        break;
+                    case 'top':
+                        flashStyles.top = '-12px';
+                        flashStyles.left = '50%';
+                        flashStyles.transform = 'translateX(-50%)';
+                        flashStyles.width = '9px';
+                        flashStyles.height = '9px';
+                        break;
+                    case 'diagonal':
+                        flashStyles.bottom = '8px';
+                        flashStyles.right = '8px';
+                        flashStyles.width = '7px';
+                        flashStyles.height = '7px';
+                        break;
+                    case 'integrated':
+                        // Flash integrado en el módulo (como en Samsung)
+                        flashStyles.background = 'linear-gradient(45deg, #fff8e1, #ffecb3)';
+                        flashStyles.width = '12px';
+                        flashStyles.height = '6px';
+                        flashStyles.borderRadius = '3px';
+                        flashStyles.right = '10px';
+                        flashStyles.top = '50%';
+                        flashStyles.transform = 'translateY(-50%)';
+                        break;
+                }
+
+                Object.assign(flash.style, flashStyles);
                 module.appendChild(flash);
             }
 
+            // Agregar sensor LiDAR (para iPhone Pro)
+            if (camera.cameraType.includes('pro') || camera.cameraType.includes('lidar')) {
+                const lidar = document.createElement('div');
+                lidar.style.cssText = `
+                    position: absolute; bottom: 8px; right: 8px;
+                    width: 6px; height: 6px; background: #1a1a1a;
+                    border-radius: 50%; border: 1px solid #333;
+                `;
+                module.appendChild(lidar);
+            }
+
             overlay.appendChild(module);
+        }
+
+        // === FUNCIONES AUXILIARES PARA CÁMARAS ===
+        function getLensCount(cameraType) {
+            if (cameraType.includes('penta')) return 5;
+            if (cameraType.includes('quad')) return 4;
+            if (cameraType.includes('triple')) return 3;
+            if (cameraType.includes('dual')) return 2;
+            return 1;
+        }
+
+        function getLensConfig(cameraType, size) {
+            const [width, height] = size.split('x').map(Number);
+            const configs = [];
+
+            switch(cameraType) {
+                case 'triple-large':
+                    configs.push(
+                        { width: '20px', height: '20px', margin: '0 4px' }, // Lente principal
+                        { width: '16px', height: '16px', margin: '0 4px' }, // Ultra wide
+                        { width: '18px', height: '18px', margin: '0 4px' }  // Telefoto
+                    );
+                    break;
+                case 'dual':
+                    configs.push(
+                        { width: '18px', height: '18px', margin: '0 6px' }, // Principal
+                        { width: '14px', height: '14px', margin: '0 6px' }  // Secundaria
+                    );
+                    break;
+                case 'single':
+                    configs.push({ width: '22px', height: '22px' });
+                    break;
+                case 'triple-samsung':
+                    // Disposición vertical típica de Samsung
+                    configs.push(
+                        { width: '18px', height: '18px', margin: '2px 0' },
+                        { width: '16px', height: '16px', margin: '2px 0' },
+                        { width: '14px', height: '14px', margin: '2px 0' }
+                    );
+                    break;
+                case 'penta-samsung':
+                    // Galaxy S24 Ultra con 5 lentes
+                    configs.push(
+                        { width: '20px', height: '20px', margin: '2px' },
+                        { width: '16px', height: '16px', margin: '2px' },
+                        { width: '14px', height: '14px', margin: '2px' },
+                        { width: '12px', height: '12px', margin: '2px' },
+                        { width: '10px', height: '10px', margin: '2px' }
+                    );
+                    break;
+                case 'dual-horizontal':
+                    configs.push(
+                        { width: '16px', height: '16px', margin: '0 8px' },
+                        { width: '16px', height: '16px', margin: '0 8px' }
+                    );
+                    break;
+                case 'dual-diagonal':
+                    // iPhone 13 estilo diagonal
+                    configs.push(
+                        { width: '18px', height: '18px', position: 'absolute', top: '5px', left: '5px' },
+                        { width: '16px', height: '16px', position: 'absolute', bottom: '5px', right: '5px' }
+                    );
+                    break;
+                default:
+                    // Configuración por defecto
+                    for (let i = 0; i < getLensCount(cameraType); i++) {
+                        configs.push({ width: '16px', height: '16px', margin: '0 4px' });
+                    }
+            }
+
+            return configs;
+        }
+
+        // === CONTROL DE VISIBILIDAD DE CÁMARAS ===
+        function toggleCameraVisibility() {
+            const overlay = document.getElementById('phoneOverlay');
+            const isVisible = overlay.style.display !== 'none';
+            overlay.style.display = isVisible ? 'none' : 'block';
+            toggleCamerasBtn.innerHTML = isVisible ? '<i class="fas fa-camera"></i>' : '<i class="fas fa-eye-slash"></i>';
+            toggleCamerasBtn.title = isVisible ? 'Mostrar cámaras' : 'Ocultar cámaras';
         }
 
         // === GUARDAR DISEÑO ===
@@ -886,7 +1125,7 @@
 
         function loadEmojis() {
             const grid = document.getElementById('emojiGrid');
-            const emojis = ["Heart","Sparkles","Star","Fire","Cool","Rocket","Glowing Star","Gem","Paint","Party","Heart Eyes","Party Popper","Star-Struck","Flexed Biceps","Lightning","Rainbow","Bullseye","Hundred Points","Crown","Money Bag"];
+            const emojis = ["❤️","✨","⭐","🔥","😎","🚀","🌟","💎","🎨","🎉","😍","🎊","🤩","💪","⚡","🌈","🎯","💯","👑","💰"];
             emojis.forEach(e => {
                 const div = document.createElement('div');
                 div.className = 'emoji-item';
@@ -1070,28 +1309,6 @@
             }
         }, { passive: false });
 
-        // === EXPORTAR DISEÑO A PNG (OPCIONAL) ===
-        function exportToPNG() {
-            html2canvas(document.querySelector('.phone-screen'), {
-                scale: 2,
-                backgroundColor: null,
-                logging: false
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `skin_${currentBrand}_${currentModel}.png`;
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        }
-
-        // Agregar botón de exportar (opcional)
-        const exportBtn = document.createElement('button');
-        exportBtn.textContent = 'Exportar PNG';
-        exportBtn.className = 'action-btn';
-        exportBtn.style.marginTop = '15px';
-        exportBtn.onclick = exportToPNG;
-        document.querySelector('.customization-options').appendChild(exportBtn);
-
         // === CARGAR html2canvas PARA EXPORTAR (CDN) ===
         const script = document.createElement('script');
         script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
@@ -1107,24 +1324,6 @@
             }, 100);
         });
 
-        // === SONIDO DE CONFIRMACIÓN (OPCIONAL) ===
-        function playSound() {
-            const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmFgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
-            audio.play().catch(() => {});
-        }
-
-        // Reproducir sonido al agregar al carrito
-        const originalAddToCart = addToCart;
-        window.addToCart = function() {
-            originalAddToCart();
-            playSound();
-        };
-
-        // === OPTIMIZACIÓN PARA MÓVIL: OCULTAR BARRA DE DIRECCIÓN ===
-        if ('virtualKeyboard' in navigator) {
-            navigator.virtualKeyboard.overlaysContent = true;
-        }
-
         // === DETECTAR SI ES MÓVIL Y AJUSTAR UI ===
         if (/Mobi|Android/i.test(navigator.userAgent)) {
             document.querySelectorAll('button, .btn').forEach(btn => {
@@ -1133,19 +1332,6 @@
             });
             document.querySelector('.phone-frame').style.transform = 'scale(0.9)';
         }
-
-        // === CIERRE FINAL ===
-
-</script>
-
-<!-- GOOGLE ANALYTICS (OPCIONAL) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
-</script>
-
+    </script>
 </body>
 </html>
