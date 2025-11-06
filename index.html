@@ -2,19 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SKIN CASE - Estuches Personalizados 3D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background: #F5F5F7; 
-            color: #333; 
-            overflow-x: hidden; 
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #F5F5F7;
+            color: #333;
+            overflow-x: hidden;
             transition: all 0.5s ease;
             position: relative;
+            touch-action: manipulation; /* Prevenir zoom accidental en móvil */
         }
         :root {
             --accent: #00CED1;
@@ -30,6 +31,8 @@
             --card-bg: #2d2d2d;
             --text: #f0f0f0;
             --border: #444;
+            --accent: #00BFFF; /* Ajuste para modo oscuro */
+            --btn: #BA55D3; /* Ajuste para modo oscuro */
             background: #1a1a1a !important;
             color: #f0f0f0 !important;
         }
@@ -37,12 +40,22 @@
         .dark-mode .brand-card, .dark-mode .model-card, .dark-mode .skin-type, .dark-mode .border-btn,
         .dark-mode .action-btn, .dark-mode .upload-btn, .dark-mode .add-to-cart, .dark-mode .add-another,
         .dark-mode .cart-modal, .dark-mode .design-canvas, .dark-mode .text-input, .dark-mode .emoji-item,
-        .dark-mode .phone-frame, .dark-mode .phone-screen {
+        .dark-mode .phone-frame, .dark-mode .phone-screen, .dark-mode header, .dark-mode footer,
+        .dark-mode .price-section, .dark-mode .btn, .dark-mode .buy-all-btn, .dark-mode .view-designs-btn,
+        .dark-mode .skin-types .skin-type, .dark-mode .border-options .border-btn {
             background: #2d2d2d !important;
             color: #f0f0f0 !important;
             border-color: #444 !important;
         }
-
+        .dark-mode header {
+            background: rgba(0,0,0,0.95) !important;
+        }
+        .dark-mode .price-section {
+            background: linear-gradient(135deg, var(--btn), var(--accent)) !important;
+        }
+        .dark-mode .particle {
+            background: var(--accent) !important;
+        }
         /* PARTÍCULAS DE FONDO */
         #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
         .particle {
@@ -53,7 +66,6 @@
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(180deg); }
         }
-
         /* HEADER */
         header {
             background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 15px 20px;
@@ -69,7 +81,6 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
-
         /* BIENVENIDA */
         .welcome-screen {
             min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -91,7 +102,6 @@
         @keyframes blink {
             50% { border-color: transparent; }
         }
-
         .btn {
             background: linear-gradient(135deg, var(--btn), var(--accent)); color: #FFF; border: none;
             padding: 18px 55px; font-size: 1.4rem; font-weight: 700; border-radius: 50px; cursor: pointer;
@@ -111,23 +121,19 @@
             70% { transform: scale(0.9); }
             100% { transform: scale(1); }
         }
-
         /* SELECCIÓN */
         .selection-screen { display: none; min-height: 100vh; padding: 120px 20px 20px; position: relative; }
         .back-btn { position: absolute; top: 100px; left: 20px; background: var(--accent); color: #FFF; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 206, 209, 0.3); }
         .back-btn:hover { background: var(--btn); transform: translateX(-5px) scale(1.1); }
-
         .brands-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-bottom: 40px; }
         .brand-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 25px; text-align: center; cursor: pointer; transition: all 0.4s ease; box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
         .brand-card:hover { transform: translateY(-12px) rotateX(5deg) rotateY(5deg); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0, 206, 209, 0.3); }
         .brand-logo { font-size: 2.8rem; margin-bottom: 15px; color: var(--accent); }
         .brand-name { font-size: 1.1rem; font-weight: 600; color: var(--text); }
-
         .models-container { display: none; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
         .model-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .model-card:hover { transform: translateY(-5px); border-color: var(--btn); box-shadow: 0 10px 25px rgba(139, 0, 255, 0.15); }
         .model-name { font-size: 1.1rem; font-weight: 600; color: var(--text); }
-
         /* PERSONALIZACIÓN */
         .customization-screen { display: none; min-height: 100vh; padding: 120px 20px 20px; position: relative; }
         .customization-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -136,32 +142,23 @@
         .phone-screen { width: 270px; height: 570px; background: var(--card-bg); border-radius: 30px; position: absolute; top: 15px; left: 15px; overflow: hidden; }
         .phone-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 25; }
         .back-cameras { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); }
-
         .custom-image-container { width: 100%; height: 100%; position: relative; overflow: hidden; border: 2px solid transparent; transition: border 0.3s; }
-        .custom-element { position: absolute; user-select: none; cursor: move; z-index: 5; }
+        .custom-element { position: absolute; user-select: none; cursor: move; z-index: 5; touch-action: none; /* Mejorar drag en móvil */ }
         .custom-image { max-width: 100%; max-height: 100%; }
         .custom-text { padding: 8px 12px; background: rgba(255,255,255,0.9); border-radius: 6px; font-weight: 600; }
         .custom-emoji { font-size: 2.5rem; }
-
         .transform-controls { display: flex; gap: 12px; margin: 15px 0; }
         .transform-btn { width: 42px; height: 42px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--border); color: var(--text); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
         .transform-btn:hover { background: var(--accent); color: #333; border-color: var(--accent); }
-
         .customization-options { background: var(--card-bg); border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .option-title { font-size: 1.6rem; margin-bottom: 20px; color: var(--btn); }
-        .skin-types { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .skin-types { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 30px; }
         .skin-type { background: #F8F8F8; border: 2px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; transition: 0.3s; color: var(--text); }
         .skin-type.active, .skin-type:hover { border-color: var(--accent); background: rgba(0, 206, 209, 0.1); }
-
-        .border-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-        .border-btn { padding: 10px; background: #F8F8F8; border: 2px solid var(--border); border-radius: 10px; text-align: center; cursor: pointer; font-size: 0.9rem; }
-        .border-btn.active { border-color: var(--accent); background: rgba(0, 206, 209, 0.1); }
-
         .upload-btn { background: var(--btn); color: #FFF; padding: 12px 24px; border-radius: 10px; cursor: pointer; font-weight: 600; display: inline-block; margin-right: 10px; transition: 0.3s; }
         .upload-btn:hover { background: var(--hover); }
         .action-btn { flex: 1; padding: 12px; background: #F8F8F8; border: 1px solid var(--border); color: var(--text); border-radius: 10px; cursor: pointer; transition: 0.3s; }
         .action-btn:hover { background: rgba(0, 206, 209, 0.1); border-color: var(--accent); }
-
         .price-section { background: linear-gradient(135deg, var(--btn), var(--accent)); color: #FFF; padding: 20px; border-radius: 15px; text-align: center; margin: 25px 0; font-weight: 700; }
         .current-price { font-size: 2rem; margin: 8px 0; }
         .add-to-cart, .add-another { width: 100%; padding: 18px; border: none; border-radius: 15px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.4s; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; }
@@ -169,7 +166,6 @@
         .add-to-cart:hover { background: var(--btn); color: #FFF; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 206, 209, 0.4); }
         .add-another { background: var(--btn); color: #FFF; }
         .add-another:hover { background: var(--accent); color: #000; }
-
         /* CARRITO */
         .cart-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; }
         .cart-modal { background: var(--card-bg); padding: 30px; border-radius: 20px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto; }
@@ -177,14 +173,7 @@
         .cart-total { font-size: 1.5rem; text-align: center; margin: 20px 0; color: var(--accent); font-weight: 700; }
         .buy-all-btn { background: #25D366; color: #FFF; padding: 14px 20px; border: none; border-radius: 12px; cursor: pointer; font-weight: 700; width: 100%; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; }
         .buy-all-btn:hover { background: #128C7E; }
-        .view-designs-btn { background: var(--accent); color: #000; }
-
-        /* MODAL VER DISEÑOS */
-        .designs-modal { max-height: 70vh; overflow-y: auto; }
-        .design-preview { margin: 15px 0; padding: 15px; border: 1px solid var(--border); border-radius: 12px; background: #f9f9f9; }
-        .design-canvas { width: 200px; height: 400px; background: #eee; border-radius: 30px; margin: 10px auto; position: relative; overflow: hidden; }
-        .design-canvas img, .design-canvas span { position: absolute; }
-
+        .continue-btn { background: var(--accent); color: #000; margin-top: 10px; }
         /* MODALES */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; }
         .modal-content { background: var(--card-bg); padding: 30px; border-radius: 18px; max-width: 500px; text-align: center; }
@@ -196,10 +185,8 @@
         .emoji-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 20px 0; max-height: 300px; overflow-y: auto; }
         .emoji-item { font-size: 2rem; padding: 10px; text-align: center; background: var(--bg); border-radius: 10px; cursor: pointer; transition: 0.2s; }
         .emoji-item:hover { background: var(--accent); color: #000; transform: scale(1.15); }
-
         /* FOOTER */
         footer { background: var(--card-bg); padding: 20px; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; font-size: 0.9rem; color: var(--text); }
-
         /* MODO OSCURO */
         #darkModeToggle {
             position: fixed; top: 20px; right: 20px; background: var(--card-bg); width: 50px; height: 50px;
@@ -207,7 +194,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1001; transition: 0.3s;
         }
         #darkModeToggle:hover { transform: scale(1.1); }
-
         /* CONFETTI */
         .confetti {
             position: fixed; width: 10px; height: 10px; background: #f00; z-index: 9999; pointer-events: none;
@@ -216,7 +202,6 @@
         @keyframes fall {
             to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
-
         /* === ESTILOS PARA CÁMARAS REALISTAS === */
         .camera-module {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
@@ -224,68 +209,61 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .camera-lens {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
                         inset 0 1px 2px rgba(255, 255, 255, 0.2);
             animation: pulseLens 3s infinite ease-in-out;
         }
-
         .camera-flash {
             box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
             animation: subtleGlow 2s infinite alternate;
         }
-
         @keyframes subtleGlow {
             from { opacity: 0.7; }
             to { opacity: 0.9; }
         }
-
         @keyframes pulseLens {
-            0%, 100% { 
+            0%, 100% {
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5),
                            inset 0 1px 2px rgba(255, 255, 255, 0.2);
             }
-            50% { 
+            50% {
                 box-shadow: 0 2px 12px rgba(0, 206, 209, 0.3),
                            inset 0 1px 3px rgba(255, 255, 255, 0.3);
             }
         }
-
         /* Asegurar que las cámaras se vean sobre las imágenes */
         .phone-overlay {
             pointer-events: none;
             z-index: 25;
         }
-
         .custom-element {
             z-index: 5;
         }
-
         @media (max-width: 768px) {
             .customization-container { grid-template-columns: 1fr; }
             .phone-frame { width: 260px; height: 520px; }
             .phone-screen { width: 230px; height: 490px; }
             .logo-title-full { font-size: 2.8rem; }
+            .btn, .add-to-cart, .add-another, .buy-all-btn { font-size: 1.1rem; padding: 14px; }
+            .transform-controls { justify-content: center; flex-wrap: wrap; }
+            .phone-preview { padding: 20px; }
+            .customization-options { padding: 20px; }
         }
     </style>
 </head>
 <body>
-
     <!-- MODO OSCURO -->
     <div id="darkModeToggle">
         <i class="fas fa-moon"></i>
     </div>
-
     <!-- PARTÍCULAS -->
     <div id="particles"></div>
-
     <!-- HEADER -->
     <header>
         <img src="skin_case.png" alt="SKIN CASE" class="logo-img">
         <h1 style="display: inline; margin-left: 15px; font-weight: 800; color: var(--btn);">SKIN CASE</h1>
     </header>
-
     <!-- BIENVENIDA -->
     <section class="welcome-screen" id="welcomeScreen">
         <div class="container">
@@ -297,7 +275,6 @@
             <button class="btn" id="continueBtn">EMPEZAR AHORA</button>
         </div>
     </section>
-
     <!-- SELECCIÓN -->
     <section class="selection-screen" id="selectionScreen">
         <div class="container">
@@ -309,7 +286,6 @@
             <div class="models-container" id="modelsContainer"></div>
         </div>
     </section>
-
     <!-- PERSONALIZACIÓN -->
     <section class="customization-screen" id="customizationScreen">
         <div class="container">
@@ -338,49 +314,35 @@
                         <button class="transform-btn" id="flipHorizontalBtn"><i class="fas fa-arrows-alt-h"></i></button>
                     </div>
                     <p style="font-size: 0.9rem; color: #666;">Arrastra para mover • Usa botones para ajustar</p>
+                    <button class="btn" id="exportDesignBtn" style="margin-top: 20px; padding: 12px 24px; font-size: 1rem;"><i class="fas fa-download"></i> Exportar Diseño como PNG</button>
                 </div>
-
                 <div class="customization-options">
                     <h3 class="option-title">Tipo de Skin</h3>
                     <div class="skin-types">
                         <div class="skin-type active" data-type="back">Tapa Trasera</div>
-                        <div class="skin-type" data-type="full">Completo</div>
                     </div>
-
-                    <h3 class="option-title">Bordes</h3>
-                    <div class="border-options">
-                        <div class="border-btn active" data-border="none">Ninguno</div>
-                        <div class="border-btn" data-border="thin">Fino</div>
-                        <div class="border-btn" data-border="thick">Grueso</div>
-                        <div class="border-btn" data-border="rounded">Redondeado</div>
-                    </div>
-
                     <h3 class="option-title">Personaliza</h3>
                     <div style="margin-bottom: 20px;">
                         <label for="imageUpload" class="upload-btn">Subir Imagen</label>
                         <input type="file" id="imageUpload" accept="image/*" style="display: none;">
                         <button class="action-btn" id="addTextBtn">Texto</button>
                     </div>
-
                     <div style="display: flex; gap: 10px; margin-bottom: 25px;">
                         <button class="action-btn" id="addEmojiBtn">Emojis</button>
                         <button class="action-btn" id="clearBtn">Limpiar</button>
                         <button class="action-btn" id="toggleCamerasBtn"><i class="fas fa-camera"></i></button>
                     </div>
-
                     <div class="price-section">
                         <div style="font-size: 1.2rem; text-decoration: line-through; opacity: 0.8;">$45.000</div>
                         <div class="current-price">$31.500</div>
                         <div style="background: #000; display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;">30% OFF</div>
                     </div>
-
                     <button class="add-to-cart" id="addToCartBtn"><i class="fas fa-cart-plus"></i> AÑADIR AL CARRITO</button>
                     <button class="add-another" id="addAnotherBtn"><i class="fas fa-plus"></i> OTRO DISEÑO</button>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- CARRITO -->
     <div class="cart-overlay" id="cartOverlay">
         <div class="cart-modal">
@@ -390,24 +352,12 @@
             <button class="buy-all-btn" id="buyAllBtn">
                 <i class="fab fa-whatsapp"></i> COMPRAR TODO POR WHATSAPP
             </button>
-            <button class="buy-all-btn view-designs-btn" id="viewDesignsBtn">
-                <i class="fas fa-eye"></i> VER DISEÑOS DEL CLIENTE
+            <button class="buy-all-btn continue-btn" id="continueShoppingBtn">
+                <i class="fas fa-shopping-bag"></i> CONTINUAR COMPRANDO
             </button>
             <button class="btn" style="width: 100%; margin-top: 10px;" onclick="clearCart()">Vaciar Carrito</button>
         </div>
     </div>
-
-    <!-- MODAL VER DISEÑOS -->
-    <div class="modal" id="designsModal">
-        <div class="modal-content designs-modal">
-            <h3 style="margin-bottom: 20px; color: var(--btn);">Diseños Guardados</h3>
-            <div id="designsList"></div>
-            <div class="modal-btns">
-                <button class="modal-btn modal-cancel" onclick="document.getElementById('designsModal').style.display='none'">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
     <!-- MODAL TEXTO -->
     <div class="modal" id="textModal">
         <div class="modal-content">
@@ -423,7 +373,6 @@
             </div>
         </div>
     </div>
-
     <!-- MODAL EMOJI -->
     <div class="modal" id="emojiModal">
         <div class="modal-content">
@@ -434,12 +383,11 @@
             </div>
         </div>
     </div>
-
     <!-- FOOTER -->
     <footer>
         <p>© 2025 SKIN CASE. Todos los derechos reservados. Medellin, Colombia.</p>
     </footer>
-
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
         // === TODOS LOS MODELOS (450+ CON CÁMARAS EXACTAS) ===
         const phoneData = {
@@ -638,7 +586,6 @@
                 { name: "Note 30 VIP", cameraType: "triple", module: "rect", size: "50x30", flash: "below" }
             ]
         };
-
         // === DOM ===
         const welcomeScreen = document.getElementById('welcomeScreen');
         const selectionScreen = document.getElementById('selectionScreen');
@@ -656,20 +603,18 @@
         const cartItems = document.getElementById('cartItems');
         const cartTotal = document.getElementById('cartTotal');
         const buyAllBtn = document.getElementById('buyAllBtn');
-        const viewDesignsBtn = document.getElementById('viewDesignsBtn');
+        const continueShoppingBtn = document.getElementById('continueShoppingBtn');
         const toggleCamerasBtn = document.getElementById('toggleCamerasBtn');
-
+        const exportDesignBtn = document.getElementById('exportDesignBtn');
         let currentBrand = '', currentModel = '', selectedElement = null;
         let scale = 1, rotation = 0, isFlipped = false;
         let cart = JSON.parse(localStorage.getItem('skinCart') || '[]');
-
         // === INICIO ===
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             loadBrands();
             loadEmojis();
             updateCartUI();
-
             continueBtn.addEventListener('click', () => { welcomeScreen.style.display = 'none'; selectionScreen.style.display = 'block'; });
             backToSelectionBtn.addEventListener('click', showSelectionScreenFromCustomization);
             backToModelsBtn.addEventListener('click', showBrandsFromModels);
@@ -680,28 +625,18 @@
             document.getElementById('cancelEmojiBtn').addEventListener('click', () => document.getElementById('emojiModal').style.display = 'none');
             document.getElementById('addTextModalBtn').addEventListener('click', addTextToDesign);
             document.getElementById('clearBtn').addEventListener('click', clearDesign);
-            document.getElementById('addToCartBtn').addEventListener('click', () => { addToCart(); launchConfetti(); });
+            document.getElementById('addToCartBtn').addEventListener('click', addToCart);
             document.getElementById('addAnotherBtn').addEventListener('click', showSelectionScreenFromCustomization);
             buyAllBtn.addEventListener('click', buyAllViaWhatsApp);
-            viewDesignsBtn.addEventListener('click', showSavedDesigns);
             toggleCamerasBtn.addEventListener('click', toggleCameraVisibility);
-
-            // BORDES
-            document.querySelectorAll('.border-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.border-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    applyBorder(btn.dataset.border);
-                });
-            });
-
+            continueShoppingBtn.addEventListener('click', () => cartOverlay.style.display = 'none');
+            exportDesignBtn.addEventListener('click', exportDesign);
             // TRANSFORM
             document.getElementById('zoomInBtn').addEventListener('click', () => { if (selectedElement) { scale += 0.1; updateTransform(); } });
             document.getElementById('zoomOutBtn').addEventListener('click', () => { if (selectedElement && scale > 0.3) { scale -= 0.1; updateTransform(); } });
             document.getElementById('rotateLeftBtn').addEventListener('click', () => { if (selectedElement) { rotation -= 15; updateTransform(); } });
             document.getElementById('rotateRightBtn').addEventListener('click', () => { if (selectedElement) { rotation += 15; updateTransform(); } });
             document.getElementById('flipHorizontalBtn').addEventListener('click', () => { if (selectedElement) { isFlipped = !isFlipped; updateTransform(); } });
-
             // Botón flotante carrito
             const cartBtn = document.createElement('button');
             cartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i>';
@@ -709,7 +644,6 @@
             cartBtn.style.position = 'fixed'; cartBtn.style.bottom = '20px'; cartBtn.style.right = '20px'; cartBtn.style.zIndex = '1000';
             cartBtn.onclick = () => cartOverlay.style.display = 'flex';
             document.body.appendChild(cartBtn);
-
             // Modo oscuro
             document.getElementById('darkModeToggle').addEventListener('click', () => {
                 document.body.classList.toggle('dark-mode');
@@ -718,7 +652,6 @@
                 icon.classList.toggle('fa-sun');
             });
         });
-
         // === PARTÍCULAS ===
         function createParticles() {
             const container = document.getElementById('particles');
@@ -732,7 +665,6 @@
                 container.appendChild(p);
             }
         }
-
         // === CONFETTI ===
         function launchConfetti() {
             for (let i = 0; i < 50; i++) {
@@ -745,18 +677,15 @@
                 setTimeout(() => confetti.remove(), 3000);
             }
         }
-
         // === SISTEMA DE CÁMARAS EXACTAS MEJORADO ===
         function drawBackCameras(model) {
             const overlay = phoneOverlay;
             overlay.innerHTML = '';
             const camera = phoneData[currentBrand].find(m => m.name === model);
             if (!camera) return;
-
             // Crear el módulo de cámara principal
             const module = document.createElement('div');
             module.className = 'camera-module';
-            
             // Configurar el módulo según el tipo
             let moduleStyles = {
                 position: 'absolute',
@@ -771,7 +700,6 @@
                 padding: '8px 12px',
                 zIndex: '20'
             };
-
             // Aplicar estilos según el tipo de módulo
             switch(camera.module) {
                 case 'oval':
@@ -800,30 +728,24 @@
                     moduleStyles.height = camera.size.split('x')[0] + 'px';
                     break;
             }
-
             // Aplicar estilos al módulo
             Object.assign(module.style, moduleStyles);
-
             // Crear lentes según el tipo de cámara
             const lensCount = getLensCount(camera.cameraType);
             const lensConfig = getLensConfig(camera.cameraType, camera.size);
-            
             for (let i = 0; i < lensCount; i++) {
                 const lens = document.createElement('div');
                 lens.className = 'camera-lens';
-                
                 const lensStyles = {
                     borderRadius: '50%',
                     background: 'radial-gradient(circle at 30% 30%, #333, #000)',
                     border: '1px solid #444',
                     position: 'relative'
                 };
-
                 // Tamaño y posición de lentes específicos
                 if (lensConfig[i]) {
                     Object.assign(lens.style, lensStyles, lensConfig[i]);
                 }
-                
                 // Efecto de reflejo en la lente
                 const reflection = document.createElement('div');
                 reflection.style.cssText = `
@@ -831,22 +753,18 @@
                     background: rgba(255,255,255,0.1); border-radius: 50%; transform: rotate(-45deg);
                 `;
                 lens.appendChild(reflection);
-                
                 module.appendChild(lens);
             }
-
             // Agregar flash si corresponde
             if (camera.flash !== 'none') {
                 const flash = document.createElement('div');
                 flash.className = 'camera-flash';
-                
                 const flashStyles = {
                     position: 'absolute',
                     background: 'linear-gradient(45deg, #fff, #eee)',
                     borderRadius: '50%',
                     border: '1px solid #ddd'
                 };
-
                 // Posicionar el flash según la configuración
                 switch(camera.flash) {
                     case 'below':
@@ -887,11 +805,9 @@
                         flashStyles.transform = 'translateY(-50%)';
                         break;
                 }
-
                 Object.assign(flash.style, flashStyles);
                 module.appendChild(flash);
             }
-
             // Agregar sensor LiDAR (para iPhone Pro)
             if (camera.cameraType.includes('pro') || camera.cameraType.includes('lidar')) {
                 const lidar = document.createElement('div');
@@ -902,10 +818,8 @@
                 `;
                 module.appendChild(lidar);
             }
-
             overlay.appendChild(module);
         }
-
         // === FUNCIONES AUXILIARES PARA CÁMARAS ===
         function getLensCount(cameraType) {
             if (cameraType.includes('penta')) return 5;
@@ -914,23 +828,21 @@
             if (cameraType.includes('dual')) return 2;
             return 1;
         }
-
         function getLensConfig(cameraType, size) {
             const [width, height] = size.split('x').map(Number);
             const configs = [];
-
             switch(cameraType) {
                 case 'triple-large':
                     configs.push(
                         { width: '20px', height: '20px', margin: '0 4px' }, // Lente principal
                         { width: '16px', height: '16px', margin: '0 4px' }, // Ultra wide
-                        { width: '18px', height: '18px', margin: '0 4px' }  // Telefoto
+                        { width: '18px', height: '18px', margin: '0 4px' } // Telefoto
                     );
                     break;
                 case 'dual':
                     configs.push(
                         { width: '18px', height: '18px', margin: '0 6px' }, // Principal
-                        { width: '14px', height: '14px', margin: '0 6px' }  // Secundaria
+                        { width: '14px', height: '14px', margin: '0 6px' } // Secundaria
                     );
                     break;
                 case 'single':
@@ -973,10 +885,8 @@
                         configs.push({ width: '16px', height: '16px', margin: '0 4px' });
                     }
             }
-
             return configs;
         }
-
         // === CONTROL DE VISIBILIDAD DE CÁMARAS ===
         function toggleCameraVisibility() {
             const overlay = document.getElementById('phoneOverlay');
@@ -985,59 +895,42 @@
             toggleCamerasBtn.innerHTML = isVisible ? '<i class="fas fa-camera"></i>' : '<i class="fas fa-eye-slash"></i>';
             toggleCamerasBtn.title = isVisible ? 'Mostrar cámaras' : 'Ocultar cámaras';
         }
-
         // === GUARDAR DISEÑO ===
-        function addToCart() {
-            const skinType = document.querySelector('.skin-type.active').dataset.type === 'back' ? 'Tapa Trasera' : 'Completo';
+        async function addToCart() {
+            const skinType = document.querySelector('.skin-type.active').dataset.type;
             const description = `${currentBrand} ${currentModel} - ${skinType} - $31.500`;
-            const designHTML = imageContainer.innerHTML;
-            const border = document.querySelector('.border-btn.active').dataset.border;
-
-            cart.push({ description, price: 31500, design: designHTML, border, model: currentModel });
+            const phoneFrame = document.querySelector('.phone-frame');
+            const canvas = await html2canvas(phoneFrame, { scale: 2 });
+            const designBase64 = canvas.toDataURL('image/png');
+            cart.push({ description, price: 31500, designBase64, model: currentModel });
             localStorage.setItem('skinCart', JSON.stringify(cart));
             updateCartUI();
+            launchConfetti();
             alert('¡Agregado al carrito!');
         }
-
-        // === VER DISEÑOS ===
-        function showSavedDesigns() {
-            const list = document.getElementById('designsList');
-            list.innerHTML = '';
-            cart.forEach((item, i) => {
-                const div = document.createElement('div');
-                div.className = 'design-preview';
-                div.innerHTML = `<strong>${item.description}</strong><div class="design-canvas" style="border: ${getBorderStyle(item.border)}">${item.design}</div>`;
-                list.appendChild(div);
-            });
-            document.getElementById('designsModal').style.display = 'flex';
+        // === EXPORTAR DISEÑO ===
+        async function exportDesign() {
+            const phoneFrame = document.querySelector('.phone-frame');
+            const canvas = await html2canvas(phoneFrame, { scale: 2 });
+            const link = document.createElement('a');
+            link.download = `${currentBrand}_${currentModel}_design.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
         }
-
-        function getBorderStyle(type) {
-            switch (type) {
-                case 'thin': return '2px solid #000';
-                case 'thick': return '6px solid #000';
-                case 'rounded': return '4px solid #000; border-radius: 20px';
-                default: return 'none';
-            }
-        }
-
         // === WHATSAPP SIN NEQUI ===
         function buyAllViaWhatsApp() {
             if (cart.length === 0) return alert('Tu carrito está vacío.');
-
             let message = "Hola, quiero comprar:\n\n";
             let total = 0;
             cart.forEach(item => {
                 message += `• ${item.description}\n`;
                 total += item.price;
             });
-            message += `\n*Total: $${total.toLocaleString()}*`;
-
+            message += `\n*Total: $${total.toLocaleString()}*\n\nAdjuntaré los diseños por separado en WhatsApp.`;
             const phone = "573025852451";
             const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
-
         // === RESTO DE FUNCIONES ===
         function loadBrands() {
             brandsContainer.innerHTML = '';
@@ -1049,7 +942,6 @@
                 brandsContainer.appendChild(card);
             });
         }
-
         function loadModels(brand) {
             currentBrand = brand;
             modelsContainer.innerHTML = '';
@@ -1064,13 +956,11 @@
             modelsContainer.style.display = 'grid';
             backToModelsBtn.style.display = 'block';
         }
-
         function showBrandsFromModels() {
             modelsContainer.style.display = 'none';
             brandsContainer.style.display = 'grid';
             backToModelsBtn.style.display = 'none';
         }
-
         function startCustomization(brand, model) {
             currentModel = model;
             customTitle.textContent = `Personaliza tu ${brand} ${model}`;
@@ -1079,7 +969,6 @@
             clearDesign();
             drawBackCameras(model);
         }
-
         function showSelectionScreenFromCustomization() {
             customizationScreen.style.display = 'none';
             selectionScreen.style.display = 'block';
@@ -1087,7 +976,6 @@
             brandsContainer.style.display = 'none';
             backToModelsBtn.style.display = 'block';
         }
-
         function handleImageUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -1104,7 +992,6 @@
             };
             reader.readAsDataURL(file);
         }
-
         function addTextToDesign() {
             const text = document.getElementById('textInput').value;
             const color = document.getElementById('textColor').value;
@@ -1122,7 +1009,6 @@
             document.getElementById('textModal').style.display = 'none';
             document.getElementById('textInput').value = '';
         }
-
         function loadEmojis() {
             const grid = document.getElementById('emojiGrid');
             const emojis = ["❤️","✨","⭐","🔥","😎","🚀","🌟","💎","🎨","🎉","😍","🎊","🤩","💪","⚡","🌈","🎯","💯","👑","💰"];
@@ -1143,45 +1029,31 @@
                 grid.appendChild(div);
             });
         }
-
         function makeDraggable(el) {
             let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            el.onmousedown = dragMouseDown;
-            el.ontouchstart = dragMouseDown; // Soporte táctil
-
+            el.onpointerdown = dragMouseDown; // Usar pointerdown para mejor soporte en móvil
             function dragMouseDown(e) {
-                e = e || window.event;
                 e.preventDefault();
                 selectElement(el);
-                pos3 = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-                pos4 = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
-                document.onmouseup = closeDragElement;
-                document.ontouchend = closeDragElement;
-                document.onmousemove = elementDrag;
-                document.ontouchmove = elementDrag;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onpointerup = closeDragElement;
+                document.onpointermove = elementDrag;
             }
-
             function elementDrag(e) {
-                e = e || window.event;
                 e.preventDefault();
-                const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-                const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
-                pos1 = pos3 - clientX;
-                pos2 = pos4 - clientY;
-                pos3 = clientX;
-                pos4 = clientY;
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
                 el.style.top = (el.offsetTop - pos2) + "px";
                 el.style.left = (el.offsetLeft - pos1) + "px";
             }
-
             function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
-                document.ontouchend = null;
-                document.ontouchmove = null;
+                document.onpointerup = null;
+                document.onpointermove = null;
             }
         }
-
         function selectElement(el) {
             selectedElement = el;
             document.querySelectorAll('.custom-element').forEach(e => e.style.outline = 'none');
@@ -1192,12 +1064,10 @@
                 if (e !== el) e.style.zIndex = 5;
             });
         }
-
         function updateTransform() {
             if (!selectedElement) return;
             selectedElement.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${rotation}deg) ${isFlipped ? 'scaleX(-1)' : ''}`;
         }
-
         function clearDesign() {
             imageContainer.innerHTML = `
                 <div class="default-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
@@ -1208,27 +1078,7 @@
             scale = 1;
             rotation = 0;
             isFlipped = false;
-            applyBorder(document.querySelector('.border-btn.active').dataset.border);
         }
-
-        function applyBorder(type) {
-            const container = imageContainer;
-            container.style.border = '2px solid transparent';
-            container.style.borderRadius = '0';
-            switch (type) {
-                case 'thin':
-                    container.style.border = '2px solid #000';
-                    break;
-                case 'thick':
-                    container.style.border = '6px solid #000';
-                    break;
-                case 'rounded':
-                    container.style.border = '4px solid #000';
-                    container.style.borderRadius = '20px';
-                    break;
-            }
-        }
-
         function updateCartUI() {
             cartItems.innerHTML = '';
             let total = 0;
@@ -1252,13 +1102,11 @@
             const cartBtn = document.querySelector('button[style*="fixed"][style*="bottom"]');
             if (cartBtn) cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> ${cart.length}`;
         }
-
         function removeFromCart(index) {
             cart.splice(index, 1);
             localStorage.setItem('skinCart', JSON.stringify(cart));
             updateCartUI();
         }
-
         function clearCart() {
             if (confirm('¿Seguro que quieres vaciar el carrito?')) {
                 cart = [];
@@ -1267,7 +1115,6 @@
                 cartOverlay.style.display = 'none';
             }
         }
-
         // === CIERRE DE MODALES AL HACER CLIC FUERA ===
         window.onclick = function(event) {
             const modals = document.querySelectorAll('.modal');
@@ -1280,7 +1127,6 @@
                 cartOverlay.style.display = 'none';
             }
         };
-
         // === SOPORTE TÁCTIL PARA BOTONES DE TRANSFORMACIÓN ===
         document.querySelectorAll('.transform-btn').forEach(btn => {
             btn.ontouchstart = function(e) {
@@ -1288,7 +1134,6 @@
                 btn.click();
             };
         });
-
         // === ANIMACIÓN DE ENTRADA EN MÓVIL ===
         if (window.innerWidth <= 768) {
             document.querySelectorAll('.brand-card, .model-card').forEach((card, i) => {
@@ -1301,20 +1146,6 @@
                 }, i * 100);
             });
         }
-
-        // === PREVENIR ZOOM ACCIDENTAL EN MÓVIL ===
-        document.addEventListener('touchmove', function(e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        // === CARGAR html2canvas PARA EXPORTAR (CDN) ===
-        const script = document.createElement('script');
-        script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
-        script.onload = () => console.log('html2canvas cargado - Exportar PNG disponible');
-        document.head.appendChild(script);
-
         // === ANIMACIÓN DE CARGA AL INICIAR ===
         window.addEventListener('load', () => {
             document.body.style.opacity = '0';
@@ -1323,7 +1154,6 @@
                 document.body.style.opacity = '1';
             }, 100);
         });
-
         // === DETECTAR SI ES MÓVIL Y AJUSTAR UI ===
         if (/Mobi|Android/i.test(navigator.userAgent)) {
             document.querySelectorAll('button, .btn').forEach(btn => {
